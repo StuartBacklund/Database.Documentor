@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UL>
+  <UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="August_2018" />
+        <param name="Local" value="August_2018.Default.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="A" />
+        <param name="Local" value="August_2018.A.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Advanced Excels With EPPlus" />
+          <param name="Local" value="August_2018.A.AdvancedExcelsWithEPPlus.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Advanced WebDriver Tips and Tricks Part 2" />
+          <param name="Local" value="August_2018.A.AdvancedWebDriverTipsandTricksPart2.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Advanced WebDriver Tips and Tricks Part 3" />
+          <param name="Local" value="August_2018.A.AdvancedWebDriverTipsandTricksPart3.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="AngularJS and REST API" />
+          <param name="Local" value="August_2018.A.AngularJSandRESTAPI.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="AngularJS With MVC Web API" />
+          <param name="Local" value="August_2018.A.AngularJSWithMVCWebAPI.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Architecture Design SpecFlow Based Tests" />
+          <param name="Local" value="August_2018.A.ArchitectureDesignSpecFlowBasedTests.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Automate Windows Desktop Apps with WebDriver WinAppDriver" />
+          <param name="Local" value="August_2018.A.AutomateWindowsDesktopAppswithWebDriverWinAppDriver.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Awaiting A Method Vs Awaiting A Task" />
+          <param name="Local" value="August_2018.A.AwaitingAMethodVsAwaitingATask.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="B" />
+        <param name="Local" value="August_2018.B.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Bootstrap HTML Helpers" />
+          <param name="Local" value="August_2018.B.BootstrapHTMLHelpers.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Build Persisting Layer with ASPNET Core and EF Core" />
+          <param name="Local" value="August_2018.B.BuildPersistingLayerwithASPNETCoreandEFCore.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="C" />
+        <param name="Local" value="August_2018.C.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Calculating max date value across multiple columns" />
+          <param name="Local" value="August_2018.C.Calculatingmaxdatevalueacrossmultiplecolumns.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Convert DataRowCollection to DataRow Array" />
+          <param name="Local" value="August_2018.C.ConvertDataRowCollectiontoDataRowArray.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Create a drop down list in Excel" />
+          <param name="Local" value="August_2018.C.CreateadropdownlistinExcel.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Create a Pivot Table in Excel" />
+          <param name="Local" value="August_2018.C.CreateaPivotTableinExcel.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Create DataTable from Excel sheet" />
+          <param name="Local" value="August_2018.C.CreateDataTablefromExcelsheet.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Create Excel Drop down Data" />
+          <param name="Local" value="August_2018.C.CreateExcelDropdownData.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Create Your First WebDriver Test Project" />
+          <param name="Local" value="August_2018.C.CreateYourFirstWebDriverTestProject.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Creating A Camera App In Xamarin Android App Using Visual Studio 2015" />
+          <param name="Local" value="August_2018.C.CreatingACameraAppInXamarinAndroidAppUsingVisualStudio2015.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Creating Custom Attributes" />
+          <param name="Local" value="August_2018.C.CreatingCustomAttributes.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="D" />
+        <param name="Local" value="August_2018.D.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DataRow Usage and Example" />
+          <param name="Local" value="August_2018.D.DataRowUsageandExample.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DataRowCollection Class" />
+          <param name="Local" value="August_2018.D.DataRowCollectionClass.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DataTable Usage and Example" />
+          <param name="Local" value="August_2018.D.DataTableUsageandExample.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DataView Usage and example" />
+          <param name="Local" value="August_2018.D.DataViewUsageandexample.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Deploying an Angular 6 Application with ASP NET Core 2" />
+          <param name="Local" value="August_2018.D.DeployinganAngular6ApplicationwithASPNETCore2.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Differences between Internal and External Folders in Xamarin Android and Xamarin Forms" />
+          <param name="Local" value="August_2018.D.DifferencesbetweenInternalandExternalFoldersinXamarinAndroidandXamarinForms.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DotNET Framework Checker" />
+          <param name="Local" value="August_2018.D.DotNETFrameworkChecker.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="DOTNET Standard" />
+          <param name="Local" value="August_2018.D.DOTNETStandard.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="E" />
+        <param name="Local" value="August_2018.E.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Entity Relationships And Normalization Part 2" />
+          <param name="Local" value="August_2018.E.EntityRelationshipsAndNormalizationPart2.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="EPPlus Basics and Snippets" />
+          <param name="Local" value="August_2018.E.EPPlusBasicsandSnippets.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="EPPlus Excel Template Report Engine" />
+          <param name="Local" value="August_2018.E.EPPlusExcelTemplateReportEngine.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Excel Drop Down Lists" />
+          <param name="Local" value="August_2018.E.ExcelDropDownLists.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Execute JavaScript based code using Selenium Webdriver" />
+          <param name="Local" value="August_2018.E.ExecuteJavaScriptbasedcodeusingSeleniumWebdriver.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Explicit Waits FluentWaits in Selenium" />
+          <param name="Local" value="August_2018.E.ExplicitWaitsFluentWaitsinSelenium.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Export Excel to ImageSource in WPF" />
+          <param name="Local" value="August_2018.E.ExportExceltoImageSourceinWPF.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Export Excel to XpsDocument in WPF" />
+          <param name="Local" value="August_2018.E.ExportExceltoXpsDocumentinWPF.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="F" />
+        <param name="Local" value="August_2018.F.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Flexible WPF XAML ToggleButton RadioButton CheckBox reset behavior" />
+          <param name="Local" value="August_2018.F.FlexibleWPFXAMLToggleButtonRadioButtonCheckBoxresetbehavior.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="G" />
+        <param name="Local" value="August_2018.G.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="H" />
+        <param name="Local" value="August_2018.H.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to capture Screenshot in Selenium Webdriver" />
+          <param name="Local" value="August_2018.H.HowtocaptureScreenshotinSeleniumWebdriver.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to Get Name of the Member" />
+          <param name="Local" value="August_2018.H.HowtoGetNameoftheMember.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to let users upload their photos into your app" />
+          <param name="Local" value="August_2018.H.Howtoletusersuploadtheirphotosintoyourapp.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to make a splash screen with Xamarin Android" />
+          <param name="Local" value="August_2018.H.HowtomakeasplashscreenwithXamarinAndroid.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How To Make The ListView Aware Of Data Changes" />
+          <param name="Local" value="August_2018.H.HowToMakeTheListViewAwareOfDataChanges.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to use explicit wait in selenium webdriver" />
+          <param name="Local" value="August_2018.H.Howtouseexplicitwaitinseleniumwebdriver.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to use implicit wait in selenium webdriver" />
+          <param name="Local" value="August_2018.H.Howtouseimplicitwaitinseleniumwebdriver.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="How to use the Dictionary" />
+          <param name="Local" value="August_2018.H.HowtousetheDictionary.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="I" />
+        <param name="Local" value="August_2018.I.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="ImmutableUI and TDD with Xamarin Forms" />
+          <param name="Local" value="August_2018.I.ImmutableUIandTDDwithXamarinForms.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Introduction to Portable Class Libraries" />
+          <param name="Local" value="August_2018.I.IntroductiontoPortableClassLibraries.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="J" />
+        <param name="Local" value="August_2018.J.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="K" />
+        <param name="Local" value="August_2018.K.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="L" />
+        <param name="Local" value="August_2018.L.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Learning AngularJs Episode 1 of 15" />
+          <param name="Local" value="August_2018.L.LearningAngularJsEpisode1of15.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Learning AngularJs Episode 2 of 15" />
+          <param name="Local" value="August_2018.L.LearningAngularJsEpisode2of15.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Learning AngularJs Episode 3 of 15" />
+          <param name="Local" value="August_2018.L.LearningAngularJsEpisode3of15.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="LINQ query pagination" />
+          <param name="Local" value="August_2018.L.LINQquerypagination.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="LINQ Select Row with Max date per category" />
+          <param name="Local" value="August_2018.L.LINQSelectRowwithMaxdatepercategory.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Linq ToDictionary" />
+          <param name="Local" value="August_2018.L.LinqToDictionary.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="List All Tables in Workbook" />
+          <param name="Local" value="August_2018.L.ListAllTablesinWorkbook.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Local File Storage Using Xamarin Forms" />
+          <param name="Local" value="August_2018.L.LocalFileStorageUsingXamarinForms.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="M" />
+        <param name="Local" value="August_2018.M.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Mixing Specflow with Behaviours Design Pattern" />
+          <param name="Local" value="August_2018.M.MixingSpecflowwithBehavioursDesignPattern.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Mobile App Development and Description" />
+          <param name="Local" value="August_2018.M.MobileAppDevelopmentandDescription.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Most Underrated WebDriver Locator XPath" />
+          <param name="Local" value="August_2018.M.MostUnderratedWebDriverLocatorXPath.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="MSBuild batching" />
+          <param name="Local" value="August_2018.M.MSBuildbatching.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="MSBuild Code Review" />
+          <param name="Local" value="August_2018.M.MSBuildCodeReview.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="MSBuild Executing MSTest Unit Tests" />
+          <param name="Local" value="August_2018.M.MSBuildExecutingMSTestUnitTests.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="MSSQL Injection Cheat Sheet" />
+          <param name="Local" value="August_2018.M.MSSQLInjectionCheatSheet.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="N" />
+        <param name="Local" value="August_2018.N.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="O" />
+        <param name="Local" value="August_2018.O.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="P" />
+        <param name="Local" value="August_2018.P.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Page Objects with Selenium and Cucumber JVM" />
+          <param name="Local" value="August_2018.P.PageObjectswithSeleniumandCucumberJVM.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Portable Class Library vs Shared Projects" />
+          <param name="Local" value="August_2018.P.PortableClassLibraryvsSharedProjects.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Prism for Xamarin Forms Handling Platform specific Code" />
+          <param name="Local" value="August_2018.P.PrismforXamarinFormsHandlingPlatformspecificCode.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Prism in Xamarin Forms Step by Step Part 2" />
+          <param name="Local" value="August_2018.P.PrisminXamarinFormsStepbyStepPart2.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="Q" />
+        <param name="Local" value="August_2018.Q.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="R" />
+        <param name="Local" value="August_2018.R.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="S" />
+        <param name="Local" value="August_2018.S.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Selenium WebDriver  Working with windows services and processes" />
+          <param name="Local" value="August_2018.S.SeleniumWebDriverWorkingwithwindowsservicesandprocesses.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Selenium WebDriver Exploring the Table element" />
+          <param name="Local" value="August_2018.S.SeleniumWebDriverExploringtheTableelement.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Shared Projects in Xamarin" />
+          <param name="Local" value="August_2018.S.SharedProjectsinXamarin.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="SQL Injection Cheat Sheet" />
+          <param name="Local" value="August_2018.S.SQLInjectionCheatSheet.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="T" />
+        <param name="Local" value="August_2018.T.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="TFS Associate Automated Test with Test Case Code" />
+          <param name="Local" value="August_2018.T.TFSAssociateAutomatedTestwithTestCaseCode.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="The Good and The Bad of Xamarin Mobile Development" />
+          <param name="Local" value="August_2018.T.TheGoodandTheBadofXamarinMobileDevelopment.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="U" />
+        <param name="Local" value="August_2018.U.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Use Camera To Take Photo In Xamarin Forms" />
+          <param name="Local" value="August_2018.U.UseCameraToTakePhotoInXamarinForms.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Using AngularJs MVC Web API and EntityFramework to build NLayered Single Page Web Applications" />
+          <param name="Local" value="August_2018.U.UsingAngularJsMVCWebAPIandEntityFrameworktobuildNLayeredSinglePageWebApplications.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Using LIKE with wildchar search in LINQ query" />
+          <param name="Local" value="August_2018.U.UsingLIKEwithwildcharsearchinLINQquery.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Using WPF Behavior to reduce Loading Time" />
+          <param name="Local" value="August_2018.U.UsingWPFBehaviortoreduceLoadingTime.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="V" />
+        <param name="Local" value="August_2018.V.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="W" />
+        <param name="Local" value="August_2018.W.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Web API Service with Multiple GET Methods and its Consumption using AngularJS Client" />
+          <param name="Local" value="August_2018.W.WebAPIServicewithMultipleGETMethodsanditsConsumptionusingAngularJSClient.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="WebDriver Cheatsheet" />
+          <param name="Local" value="August_2018.W.WebDriverCheatsheet.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="WebElement Commands" />
+          <param name="Local" value="August_2018.W.WebElementCommands.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="What is Xamarin" />
+          <param name="Local" value="August_2018.W.WhatisXamarin.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Work with Fluent NHibernate in Core 2" />
+          <param name="Local" value="August_2018.W.WorkwithFluentNHibernateinCore2.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="WPF Behavior to Set Control Value to DefaultValue on Visibility Changed" />
+          <param name="Local" value="August_2018.W.WPFBehaviortoSetControlValuetoDefaultValueonVisibilityChanged.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="WPF listview Drag and Drop a Custom Item" />
+          <param name="Local" value="August_2018.W.WPFlistviewDragandDropaCustomItem.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="X" />
+        <param name="Local" value="August_2018.X.htm" />
+      </OBJECT>
+    </LI>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin and SQlite and Android" />
+          <param name="Local" value="August_2018.X.XamarinandSQliteandAndroid.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin Forms Architectural Guidance" />
+          <param name="Local" value="August_2018.X.XamarinFormsArchitecturalGuidance.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin Forms Working With Directory Using DependencyService" />
+          <param name="Local" value="August_2018.X.XamarinFormsWorkingWithDirectoryUsingDependencyService.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin Forms Working With Files Using DependencyService" />
+          <param name="Local" value="August_2018.X.XamarinFormsWorkingWithFilesUsingDependencyService.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin Questions and Answers" />
+          <param name="Local" value="August_2018.X.XamarinQuestionsandAnswers.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <UL>
+      <LI>
+        <OBJECT type="text/sitemap">
+          <param name="Name" value="Xamarin vs Ionic" />
+          <param name="Local" value="August_2018.X.XamarinvsIonic.htm" />
+          <param name="ImageNumber" value="11" />
+        </OBJECT>
+      </LI>
+    </UL>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="Y" />
+        <param name="Local" value="August_2018.Y.htm" />
+      </OBJECT>
+    </LI>
+    <LI>
+      <OBJECT type="text/sitemap">
+        <param name="Name" value="Z" />
+        <param name="Local" value="August_2018.Z.htm" />
+      </OBJECT>
+    </LI>
+  </UL>
+</UL>

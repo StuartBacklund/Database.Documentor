@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="45EA876F-B3F2-4CEB-BE21-9783DD3F11CC" Name="Database Documentor" Language="1033" Version="1.0.0.1" Manufacturer="Stuart Backlund" UpgradeCode="97927CB2-B643-439D-BD11-9C1FCEB761AA">
+    <Package Description="Creates chm and web page documentation for databases" Comments="Installation files for database documentor" InstallerVersion="200" Compressed="yes" />
+    <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+    <?define BaseDirectory=$(sys.SOURCEFILEDIR)..\?>
+    <?define BinarySourceDirectory = "..\Deploy\"?>
+    <Directory Id="TARGETDIR" Name="SourceDir" FileSource=".\">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="Database Documentor" FileSource="..\Deploy\Release\Database.Documentor.exe">
+          <Component Id="MainExecutable" Guid="3E1DC32A-6F05-43D8-BDF1-413985C8B9A7">
+            <File Id="DATABASE.DOCUMENTOR.EXE" Name="DATABASE.DOCUMENTOR.exe" Source="..\Deploy\Release\Database.Documentor.exe">
+              <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Database Documentor" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="DesktopIcon.exe" IconIndex="0" />
+              <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="Database Documentor" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
+            </File>
+            <File Id="GALASOFT.MVVMLIGHT.DLL" Name="GalaSoft.MvvmLight.dll" Source="..\Deploy\Release\GalaSoft.MvvmLight.dll" />
+            <File Id="GALASOFT.MVVMLIGHT.EXTRAS.DLL" Name="GalaSoft.MvvmLight.Extras.dll" Source="..\Deploy\Release\GalaSoft.MvvmLight.Extras.dll" />
+            <File Id="GALASOFT.MVVMLIGHT.PLATFORM.DLL" Name="GalaSoft.MvvmLight.Platform.dll" Source="..\Deploy\Release\GalaSoft.MvvmLight.Platform.dll" />
+            <File Id="MAHAPPS.METRO.DLL" Name="MahApps.Metro.dll" Source="..\Deploy\Release\MahApps.Metro.dll" />
+            <File Id="PRISM.DLL" Name="Prism.dll" Source="..\Deploy\Release\Prism.dll" />
+            <File Id="SYSTEM.WINDOWS.INTERACTIVITY.DLL" Name="System.Windows.Interactivity.dll" Source="..\Deploy\Release\System.Windows.Interactivity.dll" />
+            <File Id="Database.Documentor.EXE.CONFIG" Name="Database.Documentor.exe.config" Source="..\Deploy\Release\Database.Documentor.exe.config" />
+            <File Id="CONTROLZEX.DLL" Name="ControlzEx.dll" Source="..\Deploy\Release\ControlzEx.dll" />
+            <File Id="MAHAPPS.METRO.ICONPACKS.FONTAWESOME.DLL" Name="MahApps.Metro.IconPacks.FontAwesome.dll" Source="..\Deploy\Release\MahApps.Metro.IconPacks.FontAwesome.dll" />
+            <File Id="MAHAPPS.METRO.ICONPACKS.MODERN.DLL" Name="MahApps.Metro.IconPacks.Modern.dll" Source="..\Deploy\Release\MahApps.Metro.IconPacks.Modern.dll" />
+            <File Id="MAHAPPS.METRO.SIMPLECHILDWINDOW.DLL" Name="MahApps.Metro.SimpleChildWindow.dll" Source="..\Deploy\Release\MahApps.Metro.SimpleChildWindow.dll" />
+            <File Id="MICROSOFT.SQLSERVER.CONNECTIONINFO.DLL" Name="Microsoft.SqlServer.ConnectionInfo.dll" Source="..\Deploy\Release\Microsoft.SqlServer.ConnectionInfo.dll" />
+            <File Id="MICROSOFT.SQLSERVER.MANAGEMENT.SDK.SFC.DLL" Name="Microsoft.SqlServer.Management.Sdk.Sfc.dll" Source="..\Deploy\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
+            <File Id="MICROSOFT.SQLSERVER.SMO.DLL" Name="Microsoft.SqlServer.Smo.dll" Source="..\Deploy\Release\Microsoft.SqlServer.Smo.dll" />
+            <File Id="MICROSOFT.SQLSERVER.SQLENUM.DLL" Name="Microsoft.SqlServer.SqlEnum.dll" Source="..\Deploy\Release\Microsoft.SqlServer.SqlEnum.dll" />
+            <File Id="MICROSOFT.WINDOWSAPICODEPACK.DLL" Name="Microsoft.WindowsAPICodePack.dll" Source="..\Deploy\Release\Microsoft.WindowsAPICodePack.dll" />
+            <File Id="MICROSOFT.WINDOWSAPICODEPACK.SHELL.DLL" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="..\Deploy\Release\Microsoft.WindowsAPICodePack.Shell.dll" />
+            <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\Deploy\Release\System.ValueTuple.dll" />
+            <File Id="COMMONSERVICELOCATOR.DLL" Name="CommonServiceLocator.dll" Source="..\Deploy\Release\CommonServiceLocator.dll" />
+          </Component>
+          <Directory Id="IMAGES" Name="Images">
+            <Component Id="IMAGEFILES" DiskId="1" Guid="CF0B8D1B-DCB6-403A-AA15-E5D9027DA670">
+              <File Id="COLUMN.GIF" Name="Column.gif" Source="..\Deploy\Release\Images\Column.gif" />
+              <File Id="DISKDRIVE.PNG" Name="diskdrive.png" Source="..\Deploy\Release\Images\diskdrive.png" />
+              <File Id="FOLDER.PNG" Name="folder.png" Source="..\Deploy\Release\Images\folder.png" />
+              <File Id="INDEX.GIF" Name="Index.gif" Source="..\Deploy\Release\Images\Index.gif" />
+              <File Id="PARAMETER.GIF" Name="Parameter.gif" Source="..\Deploy\Release\Images\Parameter.gif" />
+              <File Id="PKCOLUMN.GIF" Name="PKColumn.gif" Source="..\Deploy\Release\Images\PKColumn.gif" />
+              <File Id="PROCEDURE.GIF" Name="Procedure.gif" Source="..\Deploy\Release\Images\Procedure.gif" />
+              <File Id="PROCEDURES.GIF" Name="Procedures.gif" Source="..\Deploy\Release\Images\Procedures.gif" />
+              <File Id="TABLE.GIF" Name="Table.gif" Source="..\Deploy\Release\Images\Table.gif" />
+              <File Id="TABLES.GIF" Name="Tables.gif" Source="..\Deploy\Release\Images\Tables.gif" />
+              <File Id="TREENODEDOT.GIF" Name="treenodedot.gif" Source="..\Deploy\Release\Images\treenodedot.gif" />
+              <File Id="TREENODEMINUS.GIF" Name="treenodeminus.gif" Source="..\Deploy\Release\Images\treenodeminus.gif" />
+              <File Id="TREENODEPLUS.GIF" Name="treenodeplus.gif" Source="..\Deploy\Release\Images\treenodeplus.gif" />
+              <File Id="VIEW.GIF" Name="View.gif" Source="..\Deploy\Release\Images\View.gif" />
+              <File Id="VIEWS.GIF" Name="Views.gif" Source="..\Deploy\Release\Images\Views.gif" />
+            </Component>
+          </Directory>
+          <Directory Id="RESOURCES" Name="Resources">
+            <Component Id="RESOURCEFILES" DiskId="1" Guid="091CC1C4-A2AF-462A-A71B-A7E1469E3E65">
+              <File Id="MSDN.CSS" Name="MSDN.css" Source="..\Deploy\Release\Resources\MSDN.css" />
+              <File Id="TREE.CSS" Name="tree.css" Source="..\Deploy\Release\Resources\tree.css" />
+              <File Id="TREE.JS" Name="tree.js" Source="..\Deploy\Release\Resources\tree.js" />
+            </Component>
+          </Directory>
+          <Directory Id="Output" Name="Output">
+            <Component Id="OUTPUTFILES" DiskId="1" Guid="BDB851BC-FBA6-4A7A-ABDE-E191B381DF45">
+              <File Id="Readme.txt" Name="Readme.txt" Source="..\Deploy\Release\Output\Readme.txt" />
+            </Component>
+          </Directory>
+        </Directory>
+        <Directory Id="DesktopFolder" />
+        <Directory Id="ProgramMenuFolder">
+          <Directory Id="ProgramMenuDir" Name="Database Documentor">
+            <Component Id="StartMenuShortcuts" Guid="94DABC19-CC91-49A1-AAFF-2BDEAAFBF5D9">
+              <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+              <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+              <Shortcut Id="UninstallProduct" Name="Uninstall" Description="Uninstalls the application" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="ProductFeature" Title="Installing Database Documentor" Level="1">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="RESOURCEFILES" />
+      <ComponentRef Id="IMAGEFILES" />
+      <ComponentRef Id="OUTPUTFILES" />
+      <ComponentRef Id="StartMenuShortcuts" />
+    </Feature>
+    <UI />
+    <UIRef Id="WixUI_Mondo" />
+    <Icon Id="DesktopIcon.exe" SourceFile="..\Deploy\Release\Database.Documentor.exe" />
+    <Icon Id="StartMenuIcon.exe" SourceFile="..\Deploy\Release\Database.Documentor.exe" />
+  </Product>
+</Wix>

@@ -1,0 +1,35 @@
+<Application
+    x:Class="Database.Documentor.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Database.Documentor"
+    d1p1:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <vm:ViewModelLocator
+                xmlns:vm="clr-namespace:Database.Documentor.ViewModel"
+                x:Key="Locator"
+                d:IsDataSource="True" />
+            <BitmapImage
+                x:Key="IndexImageSource"
+                CacheOption="OnLoad"
+                CreateOptions="IgnoreImageCache"
+                UriSource="C:\Users\Stuart\source\repos\Database.Documentor\Database.Documentor\Images\index.gif" />
+            <BitmapImage
+                x:Key="FolderImageSource"
+                CacheOption="OnLoad"
+                CreateOptions="IgnoreImageCache"
+                UriSource="C:\Users\Stuart\source\repos\Database.Documentor\Database.Documentor\Images\folder.png" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
