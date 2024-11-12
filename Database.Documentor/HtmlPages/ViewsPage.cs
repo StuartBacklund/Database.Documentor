@@ -4,13 +4,10 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Produces the Views HTML Page.</summary>
     public class ViewsPage : BasePage
     {
         private DataTable dt;
 
-        /// <summary>Datatable containing information about the views in the current database.</summary>
-        /// <value>Datatable containing data needed to produce the output Page.</value>
         public DataTable Dt
         {
             get
@@ -23,8 +20,6 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <overloads>This method has 2 overloads</overloads>
-        /// <summary>Produces the output HTML.</summary>
         public override void WriteHTML()
         {
             StreamWriter s = new StreamWriter(fs);
@@ -86,7 +81,11 @@ namespace Database.Documentor.htmPages
                 s.WriteLine(" | ");
                 s.WriteLine("<a href='" + GetProceduresFileName() + "'>Stored Procedures</a>");
             }
-
+            if (FunctionCount > 0)
+            {
+                s.WriteLine(" | ");
+                s.WriteLine("<a href='" + GetFunctionsFileName() + "'>Functions</a>");
+            }
             s.WriteLine("</p>");
             // End Links
 
@@ -101,19 +100,19 @@ namespace Database.Documentor.htmPages
             s.Close();
         }
 
-        /// <summary>Sets class properties then produces the output HTML.</summary>
-        /// <param name="dt_input">Datatable containing information about the views in the current database.</param>
         public void WriteHTML(DataTable dtinput,
                                 DbDocSettings mySettings,
                                 int tableCount,
                                 int viewCount,
-                                int procedureCount)
+                                int procedureCount,
+                                int functionCount)
         {
             this.Dt = dtinput;
             this.MySettings = mySettings;
             this.TableCount = tableCount;
             this.ViewCount = viewCount;
             this.ProcedureCount = procedureCount;
+            this.FunctionCount = functionCount;
 
             this.WriteHTML();
         }

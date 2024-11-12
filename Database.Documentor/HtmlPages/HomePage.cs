@@ -8,19 +8,19 @@ namespace Database.Documentor.htmPages
     /// <summary>Produces the Home HTML Page.</summary>
     public class HomePage : BasePage
     {
-        private DataSet _ds;
+        private DataSet ds;
 
         /// <summary>The dataset used to generate the HTML output.</summary>
         /// <value>DataSet containing data needed to produce the output Home Page.</value>
-        public DataSet ds
+        public DataSet Ds
         {
             get
             {
-                return _ds;
+                return ds;
             }
             set
             {
-                _ds = value;
+                ds = value;
             }
         }
 
@@ -56,11 +56,11 @@ namespace Database.Documentor.htmPages
 
             s.WriteLine("        <ul>");
 
-            if (!(ds.Tables[Resources.TablesText] == null) && ds.Tables[Resources.TablesText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.TablesText] == null) && Ds.Tables[Resources.TablesText].Rows.Count > 0)
             {
                 s.WriteLine("           <li><a href='" + GetTablesFileName() + "'>Tables</a></li>");
                 s.WriteLine("              <ul>");
-                foreach (DataRow row in ds.Tables[Resources.TablesText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.TablesText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["TABLE_NAME"]);
                     s.WriteLine("                 <li><a href='" + GetFileName(tableName, "Table") + "'>" + tableName + "</a></li>");
@@ -68,11 +68,11 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("              </ul>");
             }
 
-            if (!(ds.Tables[Resources.ViewsText] == null) && ds.Tables[Resources.ViewsText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.ViewsText] == null) && Ds.Tables[Resources.ViewsText].Rows.Count > 0)
             {
                 s.WriteLine("           <li><a href='" + GetViewsFileName() + "'>Views</a></li>");
                 s.WriteLine("              <ul>");
-                foreach (DataRow row in ds.Tables[Resources.ViewsText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.ViewsText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["TABLE_NAME"]);
                     s.WriteLine("                 <li><a href='" + GetFileName(tableName, "View") + "'>" + tableName + "</a></li>");
@@ -80,14 +80,26 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("              </ul>");
             }
 
-            if (!(ds.Tables[Resources.ProceduresText] == null) && ds.Tables[Resources.ProceduresText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.ProceduresText] == null) && Ds.Tables[Resources.ProceduresText].Rows.Count > 0)
             {
                 s.WriteLine("           <li><a href='" + GetProceduresFileName() + "'>Stored Procedures</a></li>");
                 s.WriteLine("              <ul>");
-                foreach (DataRow row in ds.Tables[Resources.ProceduresText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.ProceduresText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["PROCEDURE_NAME"]);
                     s.WriteLine("                 <li><a href='" + GetFileName(tableName, "Procedure") + "'>" + tableName + "</a></li>");
+                }
+                s.WriteLine("              </ul>");
+            }
+
+            if (!(Ds.Tables[Resources.FunctionsText] == null) && Ds.Tables[Resources.FunctionsText].Rows.Count > 0)
+            {
+                s.WriteLine("           <li><a href='" + GetFunctionsFileName() + "'>Functions</a></li>");
+                s.WriteLine("              <ul>");
+                foreach (DataRow row in Ds.Tables[Resources.FunctionsText].Rows)
+                {
+                    string tableName = System.Convert.ToString(row["function_name"]);
+                    s.WriteLine("                 <li><a href='" + GetFileName(tableName, "Function") + "'>" + tableName + "</a></li>");
                 }
                 s.WriteLine("              </ul>");
             }

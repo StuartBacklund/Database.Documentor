@@ -3,19 +3,36 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
+using Database.Documentor.Commands;
 using Database.Documentor.Utility;
 using GalaSoft.MvvmLight;
 using Prism.Commands;
+using Prism.Events;
 
 namespace Database.Documentor.ViewModel
 {
     public class SqlConnectionViewModel : ViewModelBase
     {
         private string userId;
-
+        private IEventAggregator eventAggregator;
+        private async Task UIThreadAction(Action act)
+        {
+            await _dispatcher.InvokeAsync(() => act.Invoke());
+        }
+        private Dispatcher _dispatcher
+        {
+            get { return App.Current.Dispatcher; }
+        }
+        private async void PropertyChangedAsync(string property)
+        {
+            await UIThreadAction(() => RaisePropertyChanged(property));
+        }
+        private Action addfile = null;
         public string UserId
         {
             get { return userId; }
@@ -23,6 +40,17 @@ namespace Database.Documentor.ViewModel
             {
                 userId = value;
                 RaisePropertyChanged(() => UserId);
+            }
+        }
+        private string serverName;
+
+        public string ServerName
+        {
+            get { return serverName; }
+            set
+            {
+                serverName = value;
+                RaisePropertyChanged(() => ServerName);
             }
         }
 
@@ -52,21 +80,8 @@ namespace Database.Documentor.ViewModel
                 RaisePropertyChanged(() => DatabaseList);
             }
         }
-
-        private ObservableCollection<string> instanceList;
-
-        public ObservableCollection<string> InstanceList
-        {
-            get
-            {
-                return instanceList;
-            }
-            set
-            {
-                instanceList = value;
-                RaisePropertyChanged(() => InstanceList);
-            }
-        }
+        public ObservableCollection<SqlServerInstance> InstanceList { get { return instanceList; } }
+        private ObservableCollection<SqlServerInstance> instanceList = new ObservableCollection<SqlServerInstance>();
 
         private string selectedDatabase;
 
@@ -83,9 +98,9 @@ namespace Database.Documentor.ViewModel
             }
         }
 
-        private string selectedInstance;
+        private SqlServerInstance selectedInstance;
 
-        public string SelectedInstance
+        public SqlServerInstance SelectedInstance
         {
             get
             {
@@ -93,13 +108,17 @@ namespace Database.Documentor.ViewModel
             }
             set
             {
-                selectedInstance = value;
-                RaisePropertyChanged(() => SelectedInstance);
+                if (value != null)
+                {
+                    this.ServerName = value.ServerInstance;
+                    RaisePropertyChanged(() => ServerName);
+                    selectedInstance = value;
+                    RaisePropertyChanged(() => SelectedInstance);
+                }
+
             }
         }
 
-        // public string ServerName { get; set; }
-        // public string DatabaseName { get; set; }
 
         public ICommand SelectionChangedCommand
         {
@@ -113,7 +132,7 @@ namespace Database.Documentor.ViewModel
         {
             if (e.AddedItems[0] == null) return;
 
-            this.SelectedInstance = e.AddedItems[0].ToString();
+            this.SelectedInstance = e.AddedItems[0] as SqlServerInstance;
         }
 
         public ICommand ListDatases
@@ -122,6 +141,36 @@ namespace Database.Documentor.ViewModel
             {
                 return new DelegateCommand<RoutedEventArgs>(this.ListDatasesEvent);
             }
+        }
+        public ICommand ListServersCommand
+        {
+            get
+            {
+                return new DelegateCommand<RoutedEventArgs>(this.ListServersEvent);
+            }
+        }
+        public bool IsBusy
+        {
+            get { return !_isidle; }
+        }
+
+        private bool _isidle;
+
+        public bool IsIdle
+        {
+            get { return _isidle; }
+            set
+            {
+                _isidle = value;
+                RaisePropertyChanged(() => IsIdle);
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
+
+        private void ListServersEvent(RoutedEventArgs obj)
+        {
+            IsIdle = false;
+            ListServersAsyncCommand.Execute(InstanceList);
         }
 
         private void ListDatasesEvent(RoutedEventArgs obj)
@@ -140,20 +189,53 @@ namespace Database.Documentor.ViewModel
                 RaisePropertyChanged(() => IntegratedSecurity);
             }
         }
+        public DelegateCommand<object> ListServersAsyncCommand { get; set; }
 
-        public SqlConnectionViewModel()//IEventAggregator eventaggregator
+        public SqlConnectionViewModel(IEventAggregator eventAggregator)
         {
-            InstanceList = GetDatabaseInstances();
-        }
 
+            this.eventAggregator = eventAggregator;
+            IsIdle = true;
+            ListServersAsyncCommand = new DelegateCommand<object>(async (ob) =>
+            {
+                this.eventAggregator.GetEvent<ShowProgressDialogEvent>().Publish(true);
+                await GetServersAsync(InstanceList);
+                RaisePropertyChanged(() => InstanceList);
+
+                IsIdle = true;
+                this.eventAggregator.GetEvent<ShowProgressDialogEvent>().Publish(false);
+                RaisePropertyChanged(() => IsIdle);
+            });
+        }
+        public Task GetServersAsync(object parameter)
+        {
+            instanceList = parameter as ObservableCollection<SqlServerInstance>;
+            return Task.Run(() => GetServers(instanceList));
+        }
+        public async void GetServers(ObservableCollection<SqlServerInstance> parameter)
+        {
+
+
+            var sim = GetDatabaseInstances();
+            addfile = () =>
+            {
+                foreach (var item in sim)
+                {
+                    parameter.Add(item);
+                };
+            };
+            await UIThreadAction(() => addfile.Invoke());
+
+        }
         public List<string> GetDatabaseList()
         {
             List<string> list = new List<string>();
 
             try
             {
+                var selectedServer = string.IsNullOrEmpty(this.SelectedInstance.ServerInstance) ? this.ServerName : this.SelectedInstance.ServerInstance;
                 var credentials = IntegratedSecurity ? "Integrated Security=True" : $"User Id={UserId};Password={Password}";
-                string conString = $"Data Source={this.SelectedInstance};{credentials};Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                string conString = $"Data Source={selectedServer};{credentials};Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                 using (SqlConnection con = new SqlConnection(conString))
                 {
@@ -178,16 +260,36 @@ namespace Database.Documentor.ViewModel
             return list;
         }
 
-        public ObservableCollection<string> GetDatabaseInstances()
+        public List<SqlServerInstance> GetDatabaseInstances()
         {
-            InstanceList = new ObservableCollection<string>();
+            var list = new List<SqlServerInstance>();
             var instanceTable = SqlManangement.SqlDataSourceTable();
 
             foreach (DataRow row in instanceTable.Rows)
             {
-                InstanceList.Add(row[0].ToString());
+
+                string servername;
+                string instancename = row["InstanceName"].ToString();
+
+                if (!string.IsNullOrEmpty(instancename))
+                {
+                    servername = row["ServerName"].ToString() + '\\' + instancename;
+                }
+                else
+                {
+                    servername = row["ServerName"].ToString();
+                }
+
+                list.Add(new SqlServerInstance() { ServerInstance = servername, Version = row["Version"].ToString() });
+
             }
-            return InstanceList;
+            return list;
         }
     }
+    public class SqlServerInstance
+    {
+        public string ServerInstance { get; set; }
+        public string Version { get; set; }
+    }
+
 }

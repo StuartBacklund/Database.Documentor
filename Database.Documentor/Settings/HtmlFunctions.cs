@@ -258,7 +258,7 @@ namespace Database.Documentor.Settings
         /// <remarks>HTML Help Compiler needs this file.</remarks>
         public void WriteEmptyIndexFile()
         {
-            XmlTextWriter i = new XmlTextWriter(PathToIndexFile(), null/* TODO Change to default() if this is not a reference type */);
+            XmlTextWriter i = new XmlTextWriter(PathToIndexFile(), null);
 
             i.WriteStartElement("HTML");
             i.WriteStartElement("BODY");

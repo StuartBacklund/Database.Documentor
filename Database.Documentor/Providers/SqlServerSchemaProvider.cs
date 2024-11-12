@@ -2,12 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using Database.Documentor.Properties;
 using Database.Documentor.Utility;
 
 namespace Database.Documentor.Providers
 {
     [SchemaAttribute("Sql Server", "SqlServer")]
-    [SchemaAttribute("MSDE 2000", "MSDE2000")]
     public class SqlServerSchemaProvider : SchemaProvider
     {
         private SqlConnection sqlConn;
@@ -20,7 +20,6 @@ namespace Database.Documentor.Providers
         public override void OpenConnection()
         {
             sqlConn = new SqlConnection(ConnStringBuilder.ConnectionString());
-            //@"Data Source=DESKTOP-VTI1PV5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");// (ConnStringBuilder.ConnectionString());
             sqlConn.Open();
         }
 
@@ -30,9 +29,49 @@ namespace Database.Documentor.Providers
             sqlConn = null;
         }
 
-        /// <summary>Retrieves a datatable containing information about the User Tables in the
-        /// selected database.</summary>
-        /// <returns>DataTable</returns>
+        public override DataTable GetFunctions()
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("SELECT name AS function_name, SCHEMA_NAME(schema_id) AS schema_name, type_desc as DESCRIPTION");
+            s.Append(", create_date as Created , modify_date as Modified FROM sys.objects WHERE type_desc LIKE '%FUNCTION%'");
+
+            DataTable dt = new DataTable(Resources.FunctionsText);
+
+            try
+            {
+                dt = SqlFunctions.ExecuteDataTable(sqlConn, CommandType.Text, s.ToString());
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public override DataTable GetFunction(string functionName)
+        {
+            StringBuilder s = new StringBuilder();
+
+            s.Append($"SELECT SCHEMA_NAME(schema_id) AS schema_name, o.name AS object_name ,o.type_desc ,p.parameter_id ");
+            s.Append($",p.name AS parameter_name  ,TYPE_NAME(p.user_type_id) AS parameter_type");
+            s.Append($", p.max_length,p.precision,p.scale,p.is_output,m.definition as DESCRIPTION");
+            s.Append($" FROM sys.objects AS o INNER JOIN sys.parameters AS p ON o.object_id = p.object_id");
+            s.Append($" INNER JOIN sys.sql_modules AS m ON m.object_id = p.object_id");
+            s.Append($" WHERE o.object_id = OBJECT_ID('{functionName}')");
+            s.Append($"ORDER BY schema_name, object_name, p.parameter_id;");
+            DataTable dt = new DataTable("Function");
+
+            try
+            {
+                dt = SqlFunctions.ExecuteDataTable(sqlConn, CommandType.Text, s.ToString());
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public override DataTable GetTables()
         {
             StringBuilder s = new StringBuilder();
@@ -41,8 +80,9 @@ namespace Database.Documentor.Providers
             s.Append(" (SELECT * FROM ::fn_listextendedproperty ('ms_description', 'user', 'dbo', 'table', default, default, default)) as b");
             s.Append(" ON a.TABLE_NAME = b.objname COLLATE DATABASE_DEFAULT");
             s.Append(" WHERE (a.TABLE_TYPE = 'BASE TABLE')");
+            s.Append($" ORDER BY a.TABLE_NAME");
 
-            DataTable dt = new DataTable("Tables");
+            DataTable dt = new DataTable(Resources.TablesText);
 
             try
             {
@@ -51,13 +91,10 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the Views in the
-        /// selected database.</summary>
-        /// <returns>DataTable</returns>
         public override DataTable GetViews()
         {
             StringBuilder s = new StringBuilder();
@@ -66,9 +103,9 @@ namespace Database.Documentor.Providers
             s.Append(" (SELECT * FROM ::fn_listextendedproperty ('ms_description', 'user', 'dbo', 'view', default, default, default)) as b");
             s.Append(" ON a.TABLE_NAME = b.objname COLLATE DATABASE_DEFAULT");
             s.Append(" WHERE objectproperty(object_id(TABLE_NAME),'IsMsShipped') = 0");
+            s.Append($" ORDER BY a.TABLE_NAME");
 
-            // s.Append(Resources.ViewNames);
-            DataTable dt = new DataTable("Views");
+            DataTable dt = new DataTable(Resources.ViewsText);
 
             try
             {
@@ -77,13 +114,10 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the Stored Procedure in the
-        /// selected database.</summary>
-        /// <returns>DataTable</returns>
         public override DataTable GetProcedures()
         {
             StringBuilder s = new StringBuilder();
@@ -93,9 +127,10 @@ namespace Database.Documentor.Providers
             s.Append(" ON a.ROUTINE_NAME = b.objname COLLATE DATABASE_DEFAULT");
             s.Append(" WHERE a.ROUTINE_TYPE = 'procedure'");
             s.Append(" AND objectproperty(object_id(ROUTINE_NAME),'IsMsShipped')=0");
+            s.Append($" ORDER BY PROCEDURE_NAME");
 
-            DataTable dt = new DataTable("Procedures");
-            // s.Append(Resources.ProcedureNames);
+            DataTable dt = new DataTable(Resources.ProceduresText);
+
             try
             {
                 dt = SqlFunctions.ExecuteDataTable(sqlConn, CommandType.Text, s.ToString());
@@ -103,15 +138,11 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the relationships for
-        /// a table.</summary>
-        /// <returns>DataTable</returns>
-        /// <param name="_tableName">Name of the table to retrieve Relationship data from.</param>
-        public override DataTable GetRelationships(string _tableName)
+        public override DataTable GetRelationships(string tableName)
         {
             // Parameter @Table_Name
             StringBuilder s = new StringBuilder();
@@ -121,11 +152,12 @@ namespace Database.Documentor.Providers
             s.Append(" INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS ref ON rkey.CONSTRAINT_NAME = ref.UNIQUE_CONSTRAINT_NAME");
             s.Append(" JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE fkey ON ref.CONSTRAINT_NAME = fkey.CONSTRAINT_NAME");
             s.Append(" WHERE rkey.TABLE_NAME = @table_name OR fkey.TABLE_NAME = @table_name");
+            s.Append($" ORDER BY PK_TABLE_NAME");
 
             DataTable dt = new DataTable("Relationships");
 
             SqlParameter[] Params = new[] { new SqlParameter("@table_name", SqlDbType.VarChar) };
-            Params[0].Value = _tableName;
+            Params[0].Value = tableName;
 
             try
             {
@@ -134,16 +166,11 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the parameters for
-        /// a stored procedure.</summary>
-        /// <returns>DataTable</returns>
-        /// <param name="_routineName">Name of the Stored Procedure to retrieve
-        /// Relationship data from.</param>
-        public override DataTable GetParameters(string _routineName)
+        public override DataTable GetParameters(string routineName)
         {
             // Parameter @Routine_Name
             StringBuilder s = new StringBuilder();
@@ -158,7 +185,7 @@ namespace Database.Documentor.Providers
             DataTable dt = new DataTable("Parameters");
 
             SqlParameter[] Params = new[] { new SqlParameter("@routine_name", SqlDbType.VarChar) };
-            Params[0].Value = _routineName;
+            Params[0].Value = routineName;
 
             try
             {
@@ -167,15 +194,11 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the columns for
-        /// a table.</summary>
-        /// <returns>DataTable</returns>
-        /// <param name="_tableName">Name of the table to retrieve Columns data from.</param>
-        public override DataTable GetColumns(string _tableName)
+        public override DataTable GetColumns(string tableName)
         {
             // Parameter @Table_Name
             StringBuilder s = new StringBuilder();
@@ -191,7 +214,7 @@ namespace Database.Documentor.Providers
             DataTable dt = new DataTable("Columns");
 
             SqlParameter[] Params = new[] { new SqlParameter("@table_name", SqlDbType.VarChar) };
-            Params[0].Value = _tableName;
+            Params[0].Value = tableName;
 
             try
             {
@@ -200,15 +223,11 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the Primary Key columns for
-        /// a table.</summary>
-        /// <returns>DataTable</returns>
-        /// <param name="_tableName">Name of the table to retrieve Primary Key data from.</param>
-        public override DataTable GetPrimaryKeyColumns(string _TableName)
+        public override DataTable GetPrimaryKeyColumns(string tableName)
         {
             // Parameter @Table_Name
             string sqlText = "sp_pkeys";
@@ -216,7 +235,7 @@ namespace Database.Documentor.Providers
             DataTable dt = new DataTable("PrimaryKeys");
 
             SqlParameter[] Params = new[] { new SqlParameter("@table_name", SqlDbType.VarChar) };
-            Params[0].Value = _TableName;
+            Params[0].Value = tableName;
 
             try
             {
@@ -225,15 +244,11 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
 
-        /// <summary>Retrieves a datatable containing information about the indexes for
-        /// a table.</summary>
-        /// <returns>DataTable</returns>
-        /// <param name="_tableName">Name of the table to retrieve Index data from.</param>
-        public override DataTable GetIndexes(string _TableName)
+        public override DataTable GetIndexes(string tableName)
         {
             // Parameter @objname
             string sqlText = "sp_helpindex";
@@ -241,7 +256,7 @@ namespace Database.Documentor.Providers
             DataTable dt = new DataTable("Indexes");
 
             SqlParameter[] Params = new[] { new SqlParameter("@objname", SqlDbType.VarChar) };
-            Params[0].Value = _TableName;
+            Params[0].Value = tableName;
 
             try
             {
@@ -278,7 +293,7 @@ namespace Database.Documentor.Providers
             }
             catch (Exception ex)
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return null;
             }
         }
     }

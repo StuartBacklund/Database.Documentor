@@ -176,9 +176,9 @@ namespace Database.Documentor.htmPages
                     string cAttributes;
                     switch (true)
                     {
-                        case object _ when (row["IS_NULLABLE"].ToString().ToLower() == "yes" && Convert.ToInt32(row["IS_IDENTITY"].ToString()) == 1):
+                        case object _ when (row["IS_NULLABLE"].ToString().ToLower() == "yes" && row["IS_IDENTITY"].ToString() == "1"):
                             {
-                                cAttributes = "Auto Increment <br>Nullable";
+                                cAttributes = "Auto Increment <br/>Nullable";
                                 break;
                             }
 
@@ -188,12 +188,11 @@ namespace Database.Documentor.htmPages
                                 break;
                             }
 
-                        case object _ when System.Convert.ToInt32(row["IS_IDENTITY"]) == 1:
+                        case object _ when row["IS_IDENTITY"].ToString() == "1":
                             {
                                 cAttributes = "Auto Increment";
                                 break;
                             }
-
                         default:
                             {
                                 cAttributes = "&nbsp;";
@@ -202,7 +201,7 @@ namespace Database.Documentor.htmPages
                     }
 
                     string cDefault = row["COLUMN_DEFAULT"] == DBNull.Value ? "&nbsp;" : row["COLUMN_DEFAULT"].ToString();
-                    string cDescription = "";// row["DESCRIPTION"] == DBNull.Value ? "&nbsp;" : row["DESCRIPTION"].ToString();//System.Convert.ToString(IIf(row["DESCRIPTION"] == DBNull.Value, "&nbsp;", row["DESCRIPTION"]));
+                    string cDescription = row["DESCRIPTION"] == DBNull.Value ? "&nbsp;" : row["DESCRIPTION"].ToString();
 
                     s.WriteLine("			<tr valign='top'>");
                     s.WriteLine("				<td nowrap><img class='midvalign' src='" + cImage + ".gif'>&nbsp;<b>" + cName + "</b></td>");
@@ -296,10 +295,6 @@ namespace Database.Documentor.htmPages
             // Tables, Views, Procedures Links
             s.WriteLine("		<h4 class='dtH4'>See Also</h4>");
             s.WriteLine("		<p>");
-            if (TableCount > 0)
-            {
-                s.WriteLine("<a href='" + GetTablesFileName() + "'>Tables</a>");
-            }
 
             if (ViewCount > 0)
             {
@@ -312,7 +307,11 @@ namespace Database.Documentor.htmPages
                 s.WriteLine(" | ");
                 s.WriteLine("<a href='" + GetProceduresFileName() + "'>Stored Procedures</a>");
             }
-
+            if (FunctionCount > 0)
+            {
+                s.WriteLine(" | ");
+                s.WriteLine("<a href='" + GetFunctionsFileName() + "'>Functions</a>");
+            }
             s.WriteLine("</p>");
             // End Links
 
@@ -341,7 +340,8 @@ namespace Database.Documentor.htmPages
                             DbDocSettings mySettings,
                             int tableCount,
                             int viewCount,
-                            int procedureCount)
+                            int procedureCount,
+                            int functionCount)
         {
             this.Dtrow = dtrowInput;
             this.DtColumns = dtColumnsInput;
@@ -352,7 +352,7 @@ namespace Database.Documentor.htmPages
             this.TableCount = tableCount;
             this.ViewCount = viewCount;
             this.ProcedureCount = procedureCount;
-
+            this.FunctionCount = functionCount;
             this.WriteHTML();
         }
     }

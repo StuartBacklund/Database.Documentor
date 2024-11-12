@@ -5,13 +5,13 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Produces the Procedure Details HTML Page.</summary>
-    public class ProcedureDetailsPage : BasePage
+    /// <summary>Produces the Functions Details HTML Page.</summary>
+    public class FunctionsDetailsPage : BasePage
     {
         private DataRow dtRow;
         private DataTable dtParameters;
 
-        /// <summary>Datarow containg details of Procedure Information.</summary>
+        /// <summary>Datarow containg details of Functions Information.</summary>
         public DataRow Dtrow
         {
             get
@@ -24,7 +24,7 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <summary>Datarow containg details of Procedure Parameters.</summary>
+        /// <summary>Datarow containg details of Functions Parameters.</summary>
         public DataTable DtParameters
         {
             get
@@ -52,12 +52,12 @@ namespace Database.Documentor.htmPages
                 tempDescription = System.Convert.ToString(Dtrow["DESCRIPTION"]);
             }
 
-            string currentProcedureName = System.Convert.ToString(Dtrow["PROCEDURE_NAME"]);
+            string currentFunctionsName = System.Convert.ToString(Dtrow["function_name"]);
 
             s.WriteLine("<html>");
             s.WriteLine("  <head>");
             // s.WriteLine("     <meta name='generator' content='" & metaContent & "'>")
-            s.WriteLine("     <title>" + currentProcedureName + "</title>");
+            s.WriteLine("     <title>" + currentFunctionsName + "</title>");
             s.WriteLine("     <link href='msdn.css' type='text/css' rel='stylesheet' />");
             s.WriteLine("  </head>");
             s.WriteLine("  <body id='bodyID' class='dtBODY' topmargin='0' leftmargin='0' bottommargin='0' rightmargin='0' marginwidth='0' marginheight='0'>");
@@ -71,7 +71,7 @@ namespace Database.Documentor.htmPages
             s.WriteLine("           </table>");
             s.WriteLine("        </div>");
             s.WriteLine("        <div id='TitleRow'>");
-            s.WriteLine("           <h1 class='dtH1'>" + currentProcedureName + " Stored Procedure</h1>");
+            s.WriteLine("           <h1 class='dtH1'>" + currentFunctionsName + " Stored Functions</h1>");
             s.WriteLine("        </div>");
             s.WriteLine("     </div>");
             s.WriteLine("     <div id='nstext' valign='bottom'>");
@@ -82,6 +82,8 @@ namespace Database.Documentor.htmPages
 
             s.WriteLine("     <h4 class='dtH4'>Parameters</h4>");
 
+            string definition = string.Empty;
+
             if (!(DtParameters == null) && DtParameters.Rows.Count > 0)
             {
                 s.WriteLine("		<div class='tablediv'>");
@@ -90,36 +92,38 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("				<th>Name</th>");
                 s.WriteLine("				<th>Type</th>");
                 s.WriteLine("				<th>Direction</th>");
-                s.WriteLine("				<th width='100%'>Description</th>");
+                s.WriteLine("				<th width='100%'>Length</th>");
                 s.WriteLine("			</tr>");
 
                 foreach (DataRow row in DtParameters.Rows)
                 {
-                    string cName = System.Convert.ToString(row["PARAMETER_NAME"]);
+                    definition = System.Convert.ToString(row["DESCRIPTION"]);
+
+                    string cName = System.Convert.ToString(row["parameter_name"]);
                     string cDataType = "";
 
-                    if (row["CHARACTER_MAXIMUM_LENGTH"] == DBNull.Value)
-                        cDataType = System.Convert.ToString(row["DATA_TYPE"]);
+                    if (row["max_length"] == DBNull.Value)
+                        cDataType = System.Convert.ToString(row["parameter_type"]);
                     else
-                        switch (row["DATA_TYPE"].ToString().ToLower())
+                        switch (row["parameter_type"].ToString().ToLower())
                         {
                             case "ntext":
                             case "image":
                             case "text":
                                 {
-                                    cDataType = System.Convert.ToString(row["DATA_TYPE"]);
+                                    cDataType = System.Convert.ToString(row["parameter_type"]);
                                     break;
                                 }
 
                             default:
                                 {
-                                    cDataType = System.Convert.ToString(row["DATA_TYPE"]) + "(" + System.Convert.ToString(row["CHARACTER_MAXIMUM_LENGTH"]) + ")";
+                                    cDataType = System.Convert.ToString(row["parameter_type"]) + "(" + System.Convert.ToString(row["max_length"]) + ")";
                                     break;
                                 }
                         }
 
-                    string cAttributes = row["PARAMETER_DIRECTION"].ToString().ToLower() == "in" ? "Input" : "Output";
-                    string cDescription = row["DESCRIPTION"] == DBNull.Value ? "&nbsp;" : row["DESCRIPTION"].ToString();//System.Convert.ToString(IIf(row["DESCRIPTION"] == DBNull.Value, "&nbsp;", row["DESCRIPTION"]));
+                    string cAttributes = row["is_output"].ToString().ToLower() == "false" ? "Input" : "Output";
+                    string cDescription = row["max_length"] == DBNull.Value ? "&nbsp;" : row["max_length"].ToString();//System.Convert.ToString(IIf(row["DESCRIPTION"] == DBNull.Value, "&nbsp;", row["DESCRIPTION"]));
 
                     s.WriteLine("			<tr valign='top'>");
                     s.WriteLine("				<td nowrap><img class='midvalign' src='Parameter.gif'>&nbsp;<b>" + cName + "</b></td>");
@@ -141,10 +145,10 @@ namespace Database.Documentor.htmPages
 
             s.WriteLine("		<h4 class='dtH4'>Definition</h4>");
             s.WriteLine("		<p><code>");
-            s.WriteLine("     " + System.Convert.ToString(Dtrow["PROCEDURE_DEFINITION"]).Replace(System.Environment.NewLine, "<br/>"));
+            s.WriteLine("     " + definition.Replace(System.Environment.NewLine, "<br/>"));
             s.WriteLine("		</code></p>");
 
-            // Tables, Views, Procedures Links
+            // Tables, Views, Functionss Links
             s.WriteLine("		<h4 class='dtH4'>See Also</h4>");
             s.WriteLine("		<p>");
             if (TableCount > 0)
@@ -158,10 +162,10 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("<a href='" + GetViewsFileName() + "'>Views</a>");
             }
 
-            if (FunctionCount > 0)
+            if (ProcedureCount > 0)
             {
                 s.WriteLine(" | ");
-                s.WriteLine("<a href='" + GetFunctionsFileName() + "'>Functions</a>");
+                s.WriteLine("<a href='" + GetProceduresFileName() + "'>Stored Procedures</a>");
             }
 
             s.WriteLine("</p>");
@@ -178,7 +182,7 @@ namespace Database.Documentor.htmPages
         }
 
         /// <summary>Sets class properties then produces the output HTML.</summary>
-        /// <param name="ds_input">Datarow containg details of Procedure Information.</param>
+        /// <param name="ds_input">Datarow containg details of Functions Information.</param>
         /// <param name="dtParameters_input">DataRow containing Parameter data needed to produce the output Page.</param>
         public void WriteHTML(DataRow dtrowinput,
                                 DataTable dtParametersinput,

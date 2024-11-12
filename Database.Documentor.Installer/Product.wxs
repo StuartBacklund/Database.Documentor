@@ -24,10 +24,10 @@
             <File Id="MAHAPPS.METRO.ICONPACKS.FONTAWESOME.DLL" Name="MahApps.Metro.IconPacks.FontAwesome.dll" Source="..\Deploy\Release\MahApps.Metro.IconPacks.FontAwesome.dll" />
             <File Id="MAHAPPS.METRO.ICONPACKS.MODERN.DLL" Name="MahApps.Metro.IconPacks.Modern.dll" Source="..\Deploy\Release\MahApps.Metro.IconPacks.Modern.dll" />
             <File Id="MAHAPPS.METRO.SIMPLECHILDWINDOW.DLL" Name="MahApps.Metro.SimpleChildWindow.dll" Source="..\Deploy\Release\MahApps.Metro.SimpleChildWindow.dll" />
-            <File Id="MICROSOFT.SQLSERVER.CONNECTIONINFO.DLL" Name="Microsoft.SqlServer.ConnectionInfo.dll" Source="..\Deploy\Release\Microsoft.SqlServer.ConnectionInfo.dll" />
-            <File Id="MICROSOFT.SQLSERVER.MANAGEMENT.SDK.SFC.DLL" Name="Microsoft.SqlServer.Management.Sdk.Sfc.dll" Source="..\Deploy\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
+              <!--<File Id="MICROSOFT.SQLSERVER.CONNECTIONINFO.DLL" Name="Microsoft.SqlServer.ConnectionInfo.dll" Source="..\Deploy\Release\Microsoft.SqlServer.ConnectionInfo.dll" />
+          <File Id="MICROSOFT.SQLSERVER.MANAGEMENT.SDK.SFC.DLL" Name="Microsoft.SqlServer.Management.Sdk.Sfc.dll" Source="..\Deploy\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
             <File Id="MICROSOFT.SQLSERVER.SMO.DLL" Name="Microsoft.SqlServer.Smo.dll" Source="..\Deploy\Release\Microsoft.SqlServer.Smo.dll" />
-            <File Id="MICROSOFT.SQLSERVER.SQLENUM.DLL" Name="Microsoft.SqlServer.SqlEnum.dll" Source="..\Deploy\Release\Microsoft.SqlServer.SqlEnum.dll" />
+            <File Id="MICROSOFT.SQLSERVER.SQLENUM.DLL" Name="Microsoft.SqlServer.SqlEnum.dll" Source="..\Deploy\Release\Microsoft.SqlServer.SqlEnum.dll" />-->
             <File Id="MICROSOFT.WINDOWSAPICODEPACK.DLL" Name="Microsoft.WindowsAPICodePack.dll" Source="..\Deploy\Release\Microsoft.WindowsAPICodePack.dll" />
             <File Id="MICROSOFT.WINDOWSAPICODEPACK.SHELL.DLL" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="..\Deploy\Release\Microsoft.WindowsAPICodePack.Shell.dll" />
             <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\Deploy\Release\System.ValueTuple.dll" />

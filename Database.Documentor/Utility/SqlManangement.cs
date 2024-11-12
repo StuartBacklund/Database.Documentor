@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Sql;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 
 namespace Database.Documentor.Utility
@@ -72,6 +70,7 @@ namespace Database.Documentor.Utility
         public static DataTable SqlDataSourceTable()
         {
             SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
+            System.Data.DataTable table = instance.GetDataSources();
             return instance.GetDataSources();
         }
 

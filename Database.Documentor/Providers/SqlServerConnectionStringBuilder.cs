@@ -5,14 +5,12 @@ namespace Database.Documentor.Providers
 {
     public class SqlServerConnectionStringBuilder : ConnectionStringBuilder
     {
-        private string _server;
-        private string _database;
-        private string _userid;
-        private string _password;
-        private bool _integratedSecurity;
+        private string server;
+        private string database;
+        private string userid;
+        private string password;
+        private bool integratedSecurity;
 
-        /// <summary>Name of database server.</summary>
-        /// <value>String containing name of database server.</value>
         [Browsable(true)]
         [Category("Sql Server Database Connection Properties")]
         [DefaultValue("localhost")]
@@ -21,16 +19,14 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _server;
+                return server;
             }
             set
             {
-                _server = value;
+                server = value;
             }
         }
 
-        /// <summary>Name of database.</summary>
-        /// <value>String containing name of database.</value>
         [Browsable(true)]
         [Category("Sql Server Database Connection Properties")]
         [DefaultValue("Northwind")]
@@ -39,16 +35,14 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _database;
+                return database;
             }
             set
             {
-                _database = value;
+                database = value;
             }
         }
 
-        /// <summary>Database User ID</summary>
-        /// <value>String containing user IDs</value>
         [Browsable(true)]
         [Category("Sql Server Database Connection Properties")]
         [DefaultValue("sa")]
@@ -57,16 +51,14 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _userid;
+                return userid;
             }
             set
             {
-                _userid = value;
+                userid = value;
             }
         }
 
-        /// <summary>Database Password</summary>
-        /// <value>String containing database password</value>
         [Browsable(true)]
         [Category("Sql Server Database Connection Properties")]
         [Description("Password to use to connect to database Server.")]
@@ -74,16 +66,14 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _password;
+                return password;
             }
             set
             {
-                _password = value;
+                password = value;
             }
         }
 
-        /// <summary>Should integrated security be used to connected to database.</summary>
-        /// <value>Boolean</value>
         [Browsable(true)]
         [Category("Sql Server Database Connection Properties")]
         [DefaultValue("No")]
@@ -92,17 +82,17 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _integratedSecurity;
+                return integratedSecurity;
             }
             set
             {
-                _integratedSecurity = value;
+                integratedSecurity = value;
             }
         }
 
         public SqlServerConnectionStringBuilder()
         {
-            _type = "SqlServer";
+            type = "SqlServer";
         }
 
         public override string ConnectionString()

@@ -12,8 +12,12 @@ namespace Database.Documentor.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            Tuple<object, object, object, object, object> tuple = new Tuple<object, object, object, object, object>(values[0], values[1], values[2], values[3], values[4]);
-            return tuple;
+            if (values != null)
+            {
+                Tuple<object, object, object, object, object> tuple = new Tuple<object, object, object, object, object>(values[0], values[1], values[2], values[3], values[4]);
+                return tuple;
+            }
+            return null;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

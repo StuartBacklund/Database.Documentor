@@ -5,22 +5,19 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Produces the Contents HTML Page.</summary>
     public class ContentsPage : BasePage
     {
-        private DataSet _ds;
+        private DataSet ds;
 
-        /// <summary>The dataset used to generate the HTML output.</summary>
-        /// <value>DataSet containing data needed to produce the output Home Page.</value>
-        public DataSet ds
+        public DataSet Ds
         {
             get
             {
-                return _ds;
+                return ds;
             }
             set
             {
-                _ds = value;
+                ds = value;
             }
         }
 
@@ -52,14 +49,14 @@ namespace Database.Documentor.htmPages
 
             s.WriteLine("          <div class='treeSubnodesHidden'>");
 
-            if (!(ds.Tables[Resources.TablesText] == null) && ds.Tables[Resources.TablesText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.TablesText] == null) && Ds.Tables[Resources.TablesText].Rows.Count > 0)
             {
                 s.WriteLine("            <div class='treeNode'>");
                 s.WriteLine("              <img src='treenodeplus.gif' class='treeLinkImage' onclick='expandCollapse(this.parentNode)'>");
                 s.WriteLine("              <a href='" + GetTablesFileName() + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + MySettings.DatabaseName + " Tables</a>");
                 s.WriteLine("                <div class='treeSubnodesHidden'>");
 
-                foreach (DataRow row in ds.Tables[Resources.TablesText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.TablesText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["TABLE_NAME"]);
                     s.WriteLine("                <div class='treeNode'>");
@@ -71,14 +68,14 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("            </div>");
             }
 
-            if (!(ds.Tables[Resources.ViewsText] == null) && ds.Tables[Resources.ViewsText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.ViewsText] == null) && Ds.Tables[Resources.ViewsText].Rows.Count > 0)
             {
                 s.WriteLine("            <div class='treeNode'>");
                 s.WriteLine("              <img src='treenodeplus.gif' class='treeLinkImage' onclick='expandCollapse(this.parentNode)'>");
                 s.WriteLine("              <a href='" + GetViewsFileName() + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + MySettings.DatabaseName + " Views</a>");
                 s.WriteLine("                <div class='treeSubnodesHidden'>");
 
-                foreach (DataRow row in ds.Tables[Resources.ViewsText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.ViewsText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["TABLE_NAME"]);
                     s.WriteLine("                <div class='treeNode'>");
@@ -90,14 +87,14 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("            </div>");
             }
 
-            if (!(ds.Tables[Resources.ProceduresText] == null) && ds.Tables[Resources.ProceduresText].Rows.Count > 0)
+            if (!(Ds.Tables[Resources.ProceduresText] == null) && Ds.Tables[Resources.ProceduresText].Rows.Count > 0)
             {
                 s.WriteLine("            <div class='treeNode'>");
                 s.WriteLine("              <img src='treenodeplus.gif' class='treeLinkImage' onclick='expandCollapse(this.parentNode)'>");
-                s.WriteLine("              <a href='" + GetViewsFileName() + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + MySettings.DatabaseName + " Stored Procedures</a>");
+                s.WriteLine("              <a href='" + GetProceduresFileName() + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + MySettings.DatabaseName + " Stored Procedures</a>");
                 s.WriteLine("                <div class='treeSubnodesHidden'>");
 
-                foreach (DataRow row in ds.Tables[Resources.ProceduresText].Rows)
+                foreach (DataRow row in Ds.Tables[Resources.ProceduresText].Rows)
                 {
                     string tableName = System.Convert.ToString(row["PROCEDURE_NAME"]);
                     s.WriteLine("                <div class='treeNode'>");
@@ -109,6 +106,24 @@ namespace Database.Documentor.htmPages
                 s.WriteLine("            </div>");
             }
 
+            if (!(Ds.Tables[Resources.FunctionsText] == null) && Ds.Tables[Resources.FunctionsText].Rows.Count > 0)
+            {
+                s.WriteLine("            <div class='treeNode'>");
+                s.WriteLine("              <img src='treenodeplus.gif' class='treeLinkImage' onclick='expandCollapse(this.parentNode)'>");
+                s.WriteLine("              <a href='" + GetFunctionsFileName() + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + MySettings.DatabaseName + " Functions</a>");
+                s.WriteLine("                <div class='treeSubnodesHidden'>");
+
+                foreach (DataRow row in Ds.Tables[Resources.FunctionsText].Rows)
+                {
+                    string tableName = System.Convert.ToString(row["function_name"]);
+                    s.WriteLine("                <div class='treeNode'>");
+                    s.WriteLine("                  <img src='treenodedot.gif' class='treeNoLinkImage'>");
+                    s.WriteLine("                  <a href='" + GetFileName(tableName, "Functions") + "' target='main' class='treeUnselected' onclick='clickAnchor(this)'>" + tableName + " Function</a>");
+                    s.WriteLine("                </div>");
+                }
+                s.WriteLine("              </div>");
+                s.WriteLine("            </div>");
+            }
             s.WriteLine("          </div>");
             s.WriteLine("        </div>");
             s.WriteLine("      </div>");
@@ -119,11 +134,9 @@ namespace Database.Documentor.htmPages
             s.Close();
         }
 
-        /// <summary>Sets class properties then produces the output HTML.</summary>
-        /// <param name="ds_input">Dataset to use when writing HTML.</param>
         public void WriteHTML(DataSet dsinput, DbDocSettings mySettings)
         {
-            this.ds = dsinput;
+            this.Ds = dsinput;
             this.MySettings = mySettings;
             this.WriteHTML();
         }

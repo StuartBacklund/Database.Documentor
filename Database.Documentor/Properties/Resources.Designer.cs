@@ -91,6 +91,15 @@ namespace Database.Documentor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Functions.
+        /// </summary>
+        public static string FunctionsText {
+            get {
+                return ResourceManager.GetString("FunctionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Index {

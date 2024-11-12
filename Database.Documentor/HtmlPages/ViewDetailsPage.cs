@@ -5,14 +5,11 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Base Class for all the classes that produce an HTML Page.</summary>
     public class ViewDetailsPage : BasePage
     {
         private DataRow dtrow;
         private DataTable dtColumns;
 
-        /// <summary>DataRow with information about the current View.</summary>
-        /// <value>DataRow containing data needed to produce the output Page.</value>
         public DataRow Dtrow
         {
             get
@@ -25,8 +22,6 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <summary>DataTable containing column information for the current view.</summary>
-        /// <value>DataTable containing data needed to produce the output Page.</value>
         public DataTable DtColumns
         {
             get
@@ -39,8 +34,6 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <overloads>This method has 2 overloads</overloads>
-        /// <summary>Produces the output HTML.</summary>
         public override void WriteHTML()
         {
             StreamWriter s = new StreamWriter(fs);
@@ -138,7 +131,7 @@ namespace Database.Documentor.htmPages
 
             s.WriteLine("		<h4 class='dtH4'>Definition</h4>");
             s.WriteLine("		<p><code>");
-            s.WriteLine("     " + System.Convert.ToString(Dtrow["VIEW_DEFINITION"]).Replace(System.Environment.NewLine, "<br>"));
+            s.WriteLine("     " + System.Convert.ToString(Dtrow["VIEW_DEFINITION"]).Replace(System.Environment.NewLine, "<br/>"));
             s.WriteLine("		</code></p>");
 
             // Tables, Views, Procedures Links
@@ -175,15 +168,13 @@ namespace Database.Documentor.htmPages
             s.Close();
         }
 
-        /// <summary>Sets class properties then produces the output HTML.</summary>
-        /// <param name="dtrow_input">DataRow containing data needed to produce the output Page.</param>
-        /// <param name="dtColumns_input">DataTable containing data needed to produce the output Page.</param>
         public void WriteHTML(DataRow dtrowinput,
                                 DataTable dtColumnsinput,
                                 DbDocSettings mySettings,
                                 int tableCount,
                                 int viewCount,
-                                int procedureCount)
+                                int procedureCount,
+                                int functionCount)
         {
             this.Dtrow = dtrowinput;
             this.DtColumns = dtColumnsinput;
@@ -191,6 +182,7 @@ namespace Database.Documentor.htmPages
             this.TableCount = tableCount;
             this.ViewCount = viewCount;
             this.ProcedureCount = procedureCount;
+            this.FunctionCount = functionCount;
 
             this.WriteHTML();
         }

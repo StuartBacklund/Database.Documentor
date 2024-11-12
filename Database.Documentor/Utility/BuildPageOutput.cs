@@ -15,7 +15,7 @@ namespace Database.Documentor.Utility
         private DbDocSettings dbDocSettings;
         private int tableCount = 0;
         private int viewCount = 0;
-        private int procedureCount = 0;
+        private int procedureCount, functionCount = 0;
         private SchemaProviderFactory spf;
         private SqlServerSchemaProvider sp;
 
@@ -82,7 +82,8 @@ namespace Database.Documentor.Utility
                                     DataTable dt,
                                     int tableCount,
                                     int viewCount,
-                                    int procedureCount)
+                                    int procedureCount,
+                                    int functionCount)
         {
             var hp = new TablesPage();
 
@@ -93,7 +94,7 @@ namespace Database.Documentor.Utility
             hp.FilePath = filepath;
 
             hp.OpenFile();
-            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount);
+            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
             hp.CloseFile();
 
             htmlFunctions.AddFileToProject(fullPath);
@@ -104,7 +105,8 @@ namespace Database.Documentor.Utility
                                         DataTable dt,
                                         int tableCount,
                                         int viewCount,
-                                        int procedureCount)
+                                        int procedureCount,
+                                         int functionCount)
         {
             int pSteps = dt.Rows.Count;
             int pCount = 0;
@@ -129,7 +131,7 @@ namespace Database.Documentor.Utility
                 DataTable dtRelationships = sp.GetRelationships(objName);
 
                 hp.OpenFile();
-                hp.WriteHTML(row, dtColumns, dtKeys, dtIndexes, dtRelationships, dbDocSettings, tableCount, viewCount, procedureCount);
+                hp.WriteHTML(row, dtColumns, dtKeys, dtIndexes, dtRelationships, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
                 hp.CloseFile();
 
                 htmlFunctions.AddFileToProject(fullPath);
@@ -145,7 +147,8 @@ namespace Database.Documentor.Utility
                                 DataTable dt,
                                 int tableCount,
                                 int viewCount,
-                                int procedureCount)
+                                int procedureCount,
+                                 int functionCount)
         {
             var hp = new ViewsPage();
 
@@ -156,7 +159,7 @@ namespace Database.Documentor.Utility
             hp.FilePath = filepath;
 
             hp.OpenFile();
-            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount);
+            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
             hp.CloseFile();
 
             htmlFunctions.AddFileToProject(fullPath);
@@ -167,7 +170,8 @@ namespace Database.Documentor.Utility
                                         DataTable dt,
                                         int tableCount,
                                         int viewCount,
-                                        int procedureCount)
+                                        int procedureCount,
+                                         int functionCount)
 
         {
             int pSteps = dt.Rows.Count;
@@ -190,7 +194,7 @@ namespace Database.Documentor.Utility
                 DataTable dtViewDetails = sp.GetColumns(objName);
 
                 hp.OpenFile();
-                hp.WriteHTML(row, dtViewDetails, dbDocSettings, tableCount, viewCount, procedureCount);
+                hp.WriteHTML(row, dtViewDetails, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
                 hp.CloseFile();
 
                 htmlFunctions.AddFileToProject(fullPath);
@@ -202,7 +206,7 @@ namespace Database.Documentor.Utility
             }
         }
 
-        public void CreateProcedures(string filepath, DataTable dt, int tableCount, int viewCount, int procedureCount)
+        public void CreateProcedures(string filepath, DataTable dt, int tableCount, int viewCount, int procedureCount, int functionCount)
         {
             var hp = new ProceduresPage();
 
@@ -213,14 +217,19 @@ namespace Database.Documentor.Utility
             hp.FilePath = filepath;
 
             hp.OpenFile();
-            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount);
+            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
             hp.CloseFile();
 
             htmlFunctions.AddFileToProject(fullPath);
             htmlFunctions.AddFileToContents(Resources.ProceduresText, fullPath);
         }
 
-        public void CreateProcedureDetails(string filepath, DataTable dt, int tableCount, int viewCount, int procedureCount)
+        public void CreateProcedureDetails(string filepath,
+            DataTable dt,
+            int tableCount,
+            int viewCount,
+            int procedureCount,
+             int functionCount)
         {
             int pSteps = dt.Rows.Count;
             int pCount = 0;
@@ -242,7 +251,69 @@ namespace Database.Documentor.Utility
                 DataTable dtProcedureDetails = sp.GetParameters(objName);
 
                 hp.OpenFile();
-                hp.WriteHTML(row, dtProcedureDetails, dbDocSettings, tableCount, viewCount, procedureCount);
+                hp.WriteHTML(row, dtProcedureDetails, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
+                hp.CloseFile();
+
+                htmlFunctions.AddFileToProject(fullPath);
+                htmlFunctions.OpenBookInContents();
+                htmlFunctions.AddFileToContents(objName, fileName, 11);
+                htmlFunctions.CloseBookInContents();
+                pCount += 1;
+            }
+        }
+
+        public void CreateFunctions(string filepath,
+            DataTable dt,
+            int tableCount,
+            int viewCount,
+            int procedureCount,
+            int functionCount)
+        {
+            var hp = new FunctionsPage();
+
+            string fileName = (dbDocSettings.DatabaseName + "." + Resources.FunctionsText + ".htm").Replace(" ", "");
+            string fullPath = Path.Combine(filepath, fileName);
+
+            hp.FileName = fileName;
+            hp.FilePath = filepath;
+
+            hp.OpenFile();
+            hp.WriteHTML(dt, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
+            hp.CloseFile();
+
+            htmlFunctions.AddFileToProject(fullPath);
+            htmlFunctions.AddFileToContents(Resources.FunctionsText, fullPath);
+        }
+
+        public void CreateFunctionsDetails(string filepath,
+                                            DataTable dt,
+                                            int tableCount,
+                                            int viewCount,
+                                            int procedureCount,
+                                            int functionCount)
+        {
+            int pSteps = dt.Rows.Count;
+            int pCount = 0;
+
+            string sectionName = (dbDocSettings.DatabaseName + "." + Resources.FunctionsText + ".htm").Replace(" ", "");
+            string sectionPath = Path.Combine(filepath, sectionName);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var hp = new FunctionsDetailsPage();
+
+                string objName = System.Convert.ToString(row["function_name"]);
+                string schemaName = System.Convert.ToString(row["schema_name"]);
+                string fileName = (dbDocSettings.DatabaseName + "." + Resources.FunctionsText + "." + objName + ".htm").Replace(" ", "");
+                string fullPath = Path.Combine(filepath, fileName);
+
+                hp.FileName = fileName;
+                hp.FilePath = filepath;
+
+                DataTable dtFunctionsDetails = sp.GetFunction($"[{schemaName}].[{objName}]");
+
+                hp.OpenFile();
+                hp.WriteHTML(row, dtFunctionsDetails, dbDocSettings, tableCount, viewCount, procedureCount, functionCount);
                 hp.CloseFile();
 
                 htmlFunctions.AddFileToProject(fullPath);

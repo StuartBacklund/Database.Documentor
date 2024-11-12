@@ -1,7 +1,9 @@
 ﻿using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Database.Documentor.Views;
 using GalaSoft.MvvmLight.Threading;
 
 namespace Database.Documentor
@@ -27,12 +29,24 @@ namespace Database.Documentor
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            BootStrapper.Instance.Bootstrap(this, e);
-
             base.OnStartup(e);
 
-            MainWindow window = new MainWindow();
-            window.Show();
+            var splashScreen = new SplashWindow();
+            this.MainWindow = splashScreen;
+            splashScreen.Show();
+
+            Task.Factory.StartNew(() =>
+            {
+                BootStrapper.Instance.Bootstrap(this, e);
+
+                DispatcherHelper.UIDispatcher.Invoke(() =>
+                {
+                    var mainWindow = new MainWindow();
+                    this.MainWindow = mainWindow;
+                    mainWindow.Show();
+                    splashScreen.Close();
+                });
+            });
         }
 
         protected override void OnExit(ExitEventArgs e)

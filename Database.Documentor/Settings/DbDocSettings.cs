@@ -473,7 +473,7 @@ namespace Database.Documentor.Settings
                     }
                 }
 
-                x = null/* TODO Change to default(_) if this is not a reference type */;
+                x = null;
                 return true;
             }
             else
@@ -507,7 +507,7 @@ namespace Database.Documentor.Settings
                 x.SaveStringSetting("TreeViewAppearance", "OpenImage", this.TreeNodeOpenImage);
                 x.SaveStringSetting("TreeViewAppearance", "CloseImage", this.TreeNodeClosedImage);
 
-                x = null/* TODO Change to default(_) if this is not a reference type */;
+                x = null;
                 return true;
             }
             else

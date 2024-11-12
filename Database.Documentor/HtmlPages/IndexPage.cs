@@ -3,10 +3,8 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Produces the Index HTML Page.</summary>
     public class IndexPage : BasePage
     {
-        /// <summary>Produces the output HTML.</summary>
         public override void WriteHTML()
         {
             string contentsFile = (MySettings.DatabaseName + ".Contents.htm").Replace(" ", "");

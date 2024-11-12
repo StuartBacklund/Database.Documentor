@@ -10,7 +10,6 @@ namespace Database.Documentor.Settings
         private XmlDocument m_xmlDocument;
         private const string NOTFOUND = "<<nothing>>";
 
-        /// <summary>Gets or sets the value of the XMLSettings file name</summary>
         public string XmlFileName
         {
             get
@@ -23,20 +22,14 @@ namespace Database.Documentor.Settings
             }
         }
 
-        /// <summary>On instantiation, save XML filename and open the XmlDocument</summary>
-        /// <param name="appName">Name of the XML Settings file to open</param>
         public XmlSettings(string filepath)
         {
             XmlFileName = filepath;
-            _OpenXMLFile();
+            OpenXmlFile();
         }
 
-        /// <summary>Deletes the specified key, deleting with empty KeyName deletes the specified section</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
         public void DeleteKey(string sectionName, string keyName)
         {
-            string sKeyValue;
             XmlNode xnSection;
             XmlNode xnKey;
             xnSection = m_xmlDocument.SelectSingleNode("//Section[@Name='" + sectionName + "']");
@@ -62,8 +55,6 @@ namespace Database.Documentor.Settings
             xnSection = null;
         }
 
-        /// <summary>Retrieves section names from XML Settings file</summary>
-        /// <returns>Array of Strings containing the all the section names in the XML File</returns>
         public string[] GetSectionNames()
         {
             string sSectionName = string.Empty;
@@ -85,9 +76,6 @@ namespace Database.Documentor.Settings
             return sSections;
         }
 
-        /// <summary>Retrieves an array of Keys and Values for the SectionName specified</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <returns>Two Dimensional aray containing all Keys and Values for specified Section</returns>
         public string[,] GetAllSetting(string sectionName)
         {
             string[,] sKeys = null;
@@ -115,16 +103,11 @@ namespace Database.Documentor.Settings
             return sKeys;
         }
 
-        /// <summary>Finds the Matching Section/Key pair and returns an Integer value</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <param name="defaultValue">The value that will be returned if the Section/Key pair is not found</param>
-        /// <returns>Returns corresponding integer value if found, if not function returns specified DefaultValue</returns>
         public int GetIntegerSetting(string sectionName, string keyName, int defaultValue)
         {
             int iKeyValue;
             string sKeyValue;
-            sKeyValue = _GetSetting(sectionName, keyName);
+            sKeyValue = GetSetting(sectionName, keyName);
             if (sKeyValue == NOTFOUND)
                 iKeyValue = defaultValue;
             else
@@ -134,51 +117,33 @@ namespace Database.Documentor.Settings
                 }
                 catch
                 {
-                    // return zero if non-integer value found
                     iKeyValue = 0;
                 }
             return iKeyValue;
         }
 
-        /// <summary>Finds the Matching Section/Key pair and returns a String value</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <param name="defaultValue">The value that will be returned if the Section/Key pair is not found</param>
-        /// <returns>Returns corresponding string value if found, if not function returns specified DefaultValue</returns>
         public string GetStringSetting(string sectionName, string keyName, string defaultValue)
         {
             string sKeyValue;
-            sKeyValue = _GetSetting(sectionName, keyName);
+            sKeyValue = GetSetting(sectionName, keyName);
             if (sKeyValue == NOTFOUND)
                 sKeyValue = defaultValue;
             return sKeyValue;
         }
 
-        /// <summary>Creates or Updates a String Setting</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <param name="setting">The string value to set</param>
         public void SaveStringSetting(string sectionName, string keyName, string setting)
         {
-            _SaveSetting(sectionName, keyName, setting);
+            SaveSetting(sectionName, keyName, setting);
         }
 
-        /// <summary>Creates or updates an Integer setting</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <param name="setting">The string value to set</param>
         public void SaveIntegerSetting(string sectionName, string keyName, int setting)
         {
             string sSetting;
             sSetting = System.Convert.ToString(setting);
-            _SaveSetting(sectionName, keyName, sSetting);
+            SaveSetting(sectionName, keyName, sSetting);
         }
 
-        /// <summary>Private function used by <see cref="FunctionLibrary.XmlSettings.GetIntegerSetting"/> and <see cref="FunctionLibrary.XmlSettings.GetStringSetting"/> to handle Setting lookup</summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <returns>Returns value as String if found, Returns "NOTFOUND" if Section/Key pair does not exist</returns>
-        private string _GetSetting(string sectionName, string keyName)
+        private string GetSetting(string sectionName, string keyName)
         {
             string sKeyValue;
             XmlNode xnSection;
@@ -199,8 +164,7 @@ namespace Database.Documentor.Settings
             return sKeyValue;
         }
 
-        /// <summary>Opens XML settings file</summary>
-        private void _OpenXMLFile()
+        private void OpenXmlFile()
         {
             try
             {
@@ -216,17 +180,12 @@ namespace Database.Documentor.Settings
             }
         }
 
-        /// <summary>Private function used by <see cref="FunctionLibrary.XmlSettings.SaveIntegerSetting"/> and <see cref="FunctionLibrary.XmlSettings.SaveStringSetting"/> to handle creation
-        /// or updating of Section/Key pairs </summary>
-        /// <param name="sectionName">The name of the XML section</param>
-        /// <param name="keyName">The name of the Key</param>
-        /// <param name="setting">The string value to set</param>
-        private void _SaveSetting(string sectionName, string keyName, string setting)
+        private void SaveSetting(string sectionName, string keyName, string setting)
         {
             XmlNode xnSection;
             XmlNode xnKey;
             XmlAttribute xnAttr;
-            // check the document exists, create if not
+
             if (m_xmlDocument.DocumentElement == null)
             {
                 try
@@ -235,48 +194,41 @@ namespace Database.Documentor.Settings
                 }
                 catch (Exception e1)
                 {
-                    Debug.WriteLine("_SaveSetting - Error creating Document: " + e1.ToString());
+                    Debug.WriteLine("SaveSetting - Error creating Document: " + e1.ToString());
                 }
             }
             xnSection = m_xmlDocument.SelectSingleNode("//Section[@Name='" + sectionName + "']");
-            // check the Section exists, create if not
+
             if (xnSection == null)
             {
                 try
                 {
-                    // create the new Section node...
                     xnSection = m_xmlDocument.CreateNode(XmlNodeType.Element, "Section", "");
-                    // add the Name attribute
                     xnAttr = m_xmlDocument.CreateAttribute("Name");
                     xnAttr.Value = sectionName;
                     xnSection.Attributes.SetNamedItem(xnAttr);
-                    // get the root XML node and add the new node to the document
                     XmlNode xnRoot = m_xmlDocument.DocumentElement;
                     xnRoot.AppendChild(xnSection);
                     xnRoot = null;
                 }
                 catch (Exception e2)
                 {
-                    Debug.WriteLine("_SaveSetting - Error creating Section: " + e2.ToString());
+                    Debug.WriteLine("SaveSetting - Error creating Section: " + e2.ToString());
                 }
             }
             xnKey = xnSection.SelectSingleNode("descendant::Key[@Name='" + keyName + "']");
-            // check the Key exists, create if not
+
             if (xnKey == null)
             {
                 try
                 {
-                    // create the new Key node...
                     xnKey = m_xmlDocument.CreateNode(XmlNodeType.Element, "Key", "");
-                    // add the Name attribute
                     xnAttr = m_xmlDocument.CreateAttribute("Name");
                     xnAttr.Value = keyName;
                     xnKey.Attributes.SetNamedItem(xnAttr);
-                    // add the Value attribute
                     xnAttr = m_xmlDocument.CreateAttribute("Value");
                     xnAttr.Value = setting;
                     xnKey.Attributes.SetNamedItem(xnAttr);
-                    // add the new node to its Section
                     xnSection.AppendChild(xnKey);
                 }
                 catch (Exception e3)
@@ -293,7 +245,7 @@ namespace Database.Documentor.Settings
             }
             catch (Exception e4)
             {
-                Debug.WriteLine("_SaveSetting - Error Saving File: " + e4.ToString());
+                Debug.WriteLine("SaveSetting - Error Saving File: " + e4.ToString());
             }
             xnKey = null;
             xnSection = null;

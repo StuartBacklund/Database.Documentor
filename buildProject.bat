@@ -1,5 +1,5 @@
-set pathMSBuild="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\"
-set pathProjectFile="C:\Users\Stuart\source\repos\Database.Documentor\Database.Documentor.sln"
+set pathMSBuild="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\"
+set pathProjectFile="C:\Projects\Database.Documentor\Database.Documentor.sln"
 @echo off
 cls
 cd %pathMSBuild%

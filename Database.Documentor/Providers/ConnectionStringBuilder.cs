@@ -7,7 +7,7 @@ namespace Database.Documentor.Providers
 {
     public abstract class ConnectionStringBuilder
     {
-        public string _type;
+        public string type;
         private string sectionName = "Database";
 
         public abstract string ConnectionString();
@@ -17,7 +17,7 @@ namespace Database.Documentor.Providers
         {
             get
             {
-                return _type;
+                return type;
             }
         }
 

@@ -186,4 +186,7 @@ WHERE a.TABLE_TYPE ='VIEW'</value>
   <data name="ViewText" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="FunctionsText" xml:space="preserve">
+    <value>Functions</value>
+  </data>
 </root>

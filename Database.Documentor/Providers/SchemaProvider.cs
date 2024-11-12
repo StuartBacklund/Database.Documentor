@@ -28,6 +28,16 @@ namespace Database.Documentor.Providers
         /// <summary>Closes connection to the database.</summary>
         public abstract void CloseConnection();
 
+        /// <summary>Retrieves list of functions from the database.
+        /// Columns Required In Returned Data Table
+        /// TABLE_NAME     string
+        /// DESCRIPTION    string
+        /// </summary>
+        /// <returns>DataTable</returns>
+        public abstract DataTable GetFunctions();
+
+        public abstract DataTable GetFunction(string resourceName);
+
         /// <summary>Retrieves list of tables from the database.
         /// Columns Required In Returned Data Table
         /// TABLE_NAME     string

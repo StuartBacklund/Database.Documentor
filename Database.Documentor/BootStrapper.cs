@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonServiceLocator;
+﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 using Prism.Events;
+using System.Windows;
 
 namespace Database.Documentor
 {
@@ -32,7 +28,7 @@ namespace Database.Documentor
             }
         }
 
-        public void Bootstrap(App app, System.Windows.StartupEventArgs e)
+        public void Bootstrap(App app, StartupEventArgs e)
         {
             //Do bootstap here
         }

@@ -77,6 +77,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -103,6 +105,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BootStrapper.cs" />
+    <Compile Include="Commands\ApplicationCommands.cs" />
     <Compile Include="Controls\DbDocSettingsUserControl.xaml.cs">
       <DependentUpon>DbDocSettingsUserControl.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,8 @@
     <Compile Include="Converters\DatabaseSettingsConverter.cs" />
     <Compile Include="HtmlPages\BasePage.cs" />
     <Compile Include="HtmlPages\ContentsPage.cs" />
+    <Compile Include="HtmlPages\FunctionsDetailsPage.cs" />
+    <Compile Include="HtmlPages\FunctionsPage.cs" />
     <Compile Include="HtmlPages\HomePage.cs" />
     <Compile Include="HtmlPages\IndexPage.cs" />
     <Compile Include="HtmlPages\ProcedureDetailsPage.cs" />
@@ -149,6 +154,9 @@
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SplashWindow.xaml.cs">
+      <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\DbDocSettingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplashWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +225,7 @@
     <Content Include="Images\Column.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\DatabaseBlue.png" />
     <Content Include="Images\treenodedot.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

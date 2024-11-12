@@ -5,18 +5,18 @@ namespace Database.Documentor.Utility
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class SchemaAttribute : Attribute
     {
-        private string _fullName;
-        private string _shortName;
+        private string fullName;
+        private string shortName;
 
         public string Fullname
         {
             get
             {
-                return _fullName;
+                return fullName;
             }
             set
             {
-                _fullName = value;
+                fullName = value;
             }
         }
 
@@ -24,23 +24,23 @@ namespace Database.Documentor.Utility
         {
             get
             {
-                return _shortName;
+                return shortName;
             }
             set
             {
-                _shortName = value;
+                shortName = value;
             }
         }
 
-        public SchemaAttribute(string _fullName, string _shortName)
+        public SchemaAttribute(string fullName, string shortName)
         {
-            this.Fullname = _fullName;
-            this.ShortName = _shortName;
+            this.Fullname = fullName;
+            this.ShortName = shortName;
         } // New
 
-        public virtual bool MatchesShortName(string _shortName)
+        public virtual bool MatchesShortName(string shortName)
         {
-            return ShortName.ToLower().Equals(_shortName.ToLower());
+            return ShortName.ToLower().Equals(shortName.ToLower());
         } // MatchesShortName
     } // SchemaAttribute
 }

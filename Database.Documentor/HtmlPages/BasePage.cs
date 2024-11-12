@@ -4,7 +4,6 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Base Class for all the classes that produce an HTML Page.</summary>
     public abstract class BasePage
     {
         private string filename;
@@ -13,11 +12,10 @@ namespace Database.Documentor.htmPages
         private int tableCount;
         private int viewCount;
         private int procedureCount;
+        private int functionCount;
 
         protected FileStream fs;
 
-        /// <summary>The name of the output file.</summary>
-        /// <value>String containing file name</value>
         public string FileName
         {
             get
@@ -30,8 +28,6 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <summary>The file output path.</summary>
-        /// <value>String containing file path</value>
         public string FilePath
         {
             get
@@ -92,19 +88,20 @@ namespace Database.Documentor.htmPages
             }
         }
 
-        /// <summary>Open/Create the output file.</summary>
+        public int FunctionCount
+        {
+            get { return functionCount; }
+            set { functionCount = value; }
+        }
+
         public void OpenFile()
         {
             string path = System.IO.Path.Combine(this.FilePath, this.FileName);
-
-            // Open the stream and read it back.
             fs = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write);
         }
 
-        /// <summary>Write html to output file.</summary>
         public abstract void WriteHTML();
 
-        /// <summary>Close the output file.</summary>
         public void CloseFile()
         {
             //fs.Close();
@@ -123,6 +120,11 @@ namespace Database.Documentor.htmPages
         public string GetViewsFileName()
         {
             return GetFileName(Resources.ViewsText);
+        }
+
+        public string GetFunctionsFileName()
+        {
+            return GetFileName(Resources.FunctionsText);
         }
 
         public string GetProceduresFileName()

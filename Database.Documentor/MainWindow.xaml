@@ -12,9 +12,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
     Title="DATABASE DOCUMENTOR"
-    Width="Auto"
-    Height="Auto"
+    MinWidth="1000"
+    MinHeight="700"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
+    Icon="Images/DatabaseBlue.png"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
     mc:Ignorable="d">
     <Controls:MetroWindow.Resources>
         <converters:DatabaseSettingsConverter x:Key="dbConverter" />
@@ -25,7 +30,7 @@
         VerticalAlignment="Stretch">
         <simpleChildWindow:ChildWindow
             x:Name="child01"
-            Title="CREATING DOCUMENTATION"
+            Title="{Binding DialogTitle}"
             Padding="5"
             HorizontalAlignment="Stretch"
             CloseByEscape="False"
@@ -45,7 +50,7 @@
                     Margin="20"
                     FontSize="26"
                     FontWeight="Thin"
-                    Text="{Binding MessageBoxText}" />
+                    Text="{Binding DialogTextOutput}" />
                 <Controls:ProgressRing
                     x:Name="progRing"
                     Grid.Row="1"
@@ -59,11 +64,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Views:DatabaseView
@@ -76,27 +80,55 @@
                 DatabaseName="{Binding SelectedDatabase}"
                 IntegratedSecurity="{Binding IntegratedSecurity}"
                 Password="{Binding Password}"
-                ServerName="{Binding SelectedInstance}"
+                ServerName="{Binding ServerName}"
                 UserId="{Binding UserId}" />
-
-            <Button
-                x:Name="CreateDoc"
+            <StackPanel
                 Grid.Row="1"
-                Grid.Column="1"
-                Width="200"
-                Height="30"
-                Command="{Binding CreateDocumentation}"
-                Content="BUILD">
-                <Button.CommandParameter>
-                    <MultiBinding Converter="{StaticResource dbConverter}">
-                        <Binding ElementName="DatabaseViewControl" Path="ServerName" />
-                        <Binding ElementName="DatabaseViewControl" Path="DatabaseName" />
-                        <Binding ElementName="DatabaseViewControl" Path="IntegratedSecurity" />
-                        <Binding ElementName="DatabaseViewControl" Path="UserId" />
-                        <Binding ElementName="DatabaseViewControl" Path="Password" />
-                    </MultiBinding>
-                </Button.CommandParameter>
-            </Button>
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch">
+                <Button
+                    x:Name="CreateDoc"
+                    Width="200"
+                    Height="30"
+                    Margin="4"
+                    Command="{Binding CreateDocumentation}"
+                    Content="BUILD DOCUMENTATION">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource dbConverter}">
+                            <Binding
+                                ElementName="DatabaseViewControl"
+                                Path="ServerName"
+                                ValidatesOnExceptions="True" />
+                            <Binding
+                                ElementName="DatabaseViewControl"
+                                Path="DatabaseName"
+                                ValidatesOnExceptions="True" />
+                            <Binding
+                                ElementName="DatabaseViewControl"
+                                Path="IntegratedSecurity"
+                                ValidatesOnExceptions="True" />
+                            <Binding ElementName="DatabaseViewControl" Path="UserId" />
+                            <Binding ElementName="DatabaseViewControl" Path="Password" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+                <ScrollViewer>
+                    <TextBlock
+                        x:Name="TextOutput"
+                        Margin="4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Text="{Binding TextOutput}" />
+                </ScrollViewer>
+            </StackPanel>
         </Grid>
     </Grid>
 </Controls:MetroWindow>

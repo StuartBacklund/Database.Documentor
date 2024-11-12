@@ -6,137 +6,290 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:local="clr-namespace:Database.Documentor.Views"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="Auto"
     Height="Auto"
     DataContext="{Binding DatabaseView, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    <UserControl.Resources />
+
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock
+        <GroupBox
             Grid.Row="0"
             Grid.Column="0"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="INSTANCES" />
-        <ComboBox
-            x:Name="cmbInstances"
-            Grid.Row="0"
-            Grid.Column="1"
-            Width="250"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            ItemsSource="{Binding InstanceList}"
-            SelectedItem="{Binding SelectedInstance, Mode=TwoWay, NotifyOnSourceUpdated=True}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <command:EventToCommand Command="{Binding SelectionChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Background="Transparent" Orientation="Horizontal">
-                        <TextBlock
-                            Margin="2"
-                            FontSize="14"
-                            Text="{Binding .}" />
+            HorizontalContentAlignment="Left"
+            Header="SELECT DATABASE SERVER">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Width="150"
+                    Height="30"
+                    Margin="5,2"
+                    VerticalContentAlignment="Center"
+                    Command="{Binding ListServersCommand, Mode=OneWay}">
+                    <StackPanel
+                        Width="150"
+                        Height="27"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Canvas
+                            Width="20"
+                            Height="20"
+                            Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path
+                                Width="22"
+                                Height="22"
+                                Data="F1 M 20,24.0001L 55.9999,24.0001C 57.6568,24.0001 58.9999,25.3432 58.9999,27.0001L 58.9999,49.0001C 58.9999,50.6569 57.6567,52.0001 55.9999,52.0001L 20,52.0001C 18.3431,52.0001 17,50.6569 17,49.0001L 17,27.0001C 17,25.3433 18.3431,24.0001 20,24.0001 Z M 22,31L 22,33L 51,33L 51,31L 22,31 Z M 22,37L 22,39L 44,39L 44,37L 22,37 Z M 22,43L 22,45L 51,45L 51,43L 22,43 Z "
+                                Fill="{DynamicResource BlackBrush}"
+                                Stretch="Fill" />
+                        </Canvas>
+                        <Label Margin="2,1" Content="GET INSTANCES" />
                     </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <CheckBox
+                </Button>
+                <ComboBox
+                    x:Name="cmbInstances"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding InstanceList}"
+                    SelectedItem="{Binding SelectedInstance, Mode=TwoWay, NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <command:EventToCommand Command="{Binding SelectionChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="Transparent" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="2"
+                                    FontSize="14"
+                                    Text="{Binding ServerInstance}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="(OR) ENTER INSTANCE NAME" />
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    Text="{Binding Path=ServerName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+            </Grid>
+        </GroupBox>
+        <GroupBox
             Grid.Row="1"
-            Grid.Column="1"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="INTEGRATED SECURITY"
-            FontSize="14"
-            IsChecked="{Binding IntegratedSecurity}" />
-        <Label
+            Grid.Column="0"
+            HorizontalContentAlignment="Left"
+            Header="DATABASE AUTHENTICATION">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <CheckBox
+                    x:Name="chkIntegrated"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="INTEGRATED SECURITY"
+                    FontSize="14"
+                    IsChecked="{Binding IntegratedSecurity}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="USER ID">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=chkIntegrated, Path=IsChecked}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+
+                </TextBlock>
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="{Binding Path=UserId, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=chkIntegrated, Path=IsChecked}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="PASSWORD">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=chkIntegrated, Path=IsChecked}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=chkIntegrated, Path=IsChecked}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox
             Grid.Row="2"
             Grid.Column="0"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="USER ID"
-            FontSize="14" />
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Width="250"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="{Binding Path=UserId, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
-        <Label
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="PASSWORD"
-            FontSize="14" />
-        <TextBox
-            Grid.Row="3"
-            Grid.Column="1"
-            Width="250"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
-        <Button
-            Grid.Row="4"
-            Grid.Column="1"
-            Width="150"
-            Height="30"
-            HorizontalAlignment="Left"
-            Command="{Binding ListDatases, Mode=OneWay}"
-            Content="LIST DATABASES" />
-        <TextBlock
-            Grid.Row="5"
-            Grid.Column="0"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="DATABASE" />
-        <ComboBox
-            x:Name="cmbDatabases"
-            Grid.Row="5"
-            Grid.Column="1"
-            Width="250"
-            Margin="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            ItemsSource="{Binding DatabaseList}"
-            SelectedItem="{Binding SelectedDatabase, Mode=TwoWay, NotifyOnSourceUpdated=True}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Background="Transparent" Orientation="Horizontal">
-                        <TextBlock
-                            Margin="2"
-                            FontSize="14"
-                            Text="{Binding .}" />
+            HorizontalContentAlignment="Left"
+            Header="SELECT DATABASE">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Width="150"
+                    Height="30"
+                    Margin="5,2"
+                    VerticalContentAlignment="Center"
+                    Command="{Binding ListDatases, Mode=OneWay}">
+                    <StackPanel
+                        Width="150"
+                        Height="27"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Canvas
+                            Width="20"
+                            Height="20"
+                            Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path
+                                Width="22"
+                                Height="22"
+                                Data="F1 M 25,27L 25,17L 51,17L 51,27L 47,27L 47,21L 29,21L 29,27L 25,27 Z M 16,28L 60,28L 60,51L 51,51L 51,60L 25,60L 25,51L 16,51L 16,28 Z M 55,46L 55,33L 21,33L 21,46L 55,46 Z M 25,44L 25,39L 51,39L 51,44L 25,44 Z"
+                                Fill="{DynamicResource BlackBrush}"
+                                Stretch="Fill" />
+                        </Canvas>
+                        <Label Margin="2,1" Content="GET DATABASES" />
                     </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+
+                </Button>
+
+                <ComboBox
+                    x:Name="cmbDatabases"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="5,2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding DatabaseList}"
+                    SelectedItem="{Binding SelectedDatabase, Mode=TwoWay, NotifyOnSourceUpdated=True}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="Transparent" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="2"
+                                    FontSize="14"
+                                    Text="{Binding .}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!--<mah:ProgressRing
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Foreground="{DynamicResource AccentColorBrush}"
+                    IsActive="{Binding IsBusy}" />-->
+            </Grid>
+        </GroupBox>
     </Grid>
+
 </UserControl>

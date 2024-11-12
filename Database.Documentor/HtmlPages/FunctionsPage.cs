@@ -5,12 +5,11 @@ using Database.Documentor.Settings;
 
 namespace Database.Documentor.htmPages
 {
-    /// <summary>Produces the Procedures HTML Page.</summary>
-    public class ProceduresPage : BasePage
+    public class FunctionsPage : BasePage
     {
         private DataTable dt;
 
-        /// <summary>Datatable containg details of Procedures for the database.</summary>
+        /// <summary>Datatable containg details of Functions for the database.</summary>
         public DataTable Dt
         {
             get
@@ -33,7 +32,7 @@ namespace Database.Documentor.htmPages
             s.WriteLine("<html>");
             s.WriteLine("  <head>");
             // s.WriteLine("     <meta name='generator' content='" & metaContent & "'>")
-            s.WriteLine("     <title>" + databaseName + " Procedures</title>");
+            s.WriteLine("     <title>" + databaseName + " Functions</title>");
             s.WriteLine("     <link href='msdn.css' type='text/css' rel='stylesheet' />");
             s.WriteLine("  </head>");
             s.WriteLine("  <body id='bodyID' class='dtBODY' topmargin='0' leftmargin='0' bottommargin='0' rightmargin='0' marginwidth='0' marginheight='0'>");
@@ -47,11 +46,11 @@ namespace Database.Documentor.htmPages
             s.WriteLine("           </table>");
             s.WriteLine("        </div>");
             s.WriteLine("        <div id='TitleRow'>");
-            s.WriteLine("           <h1 class='dtH1'>" + databaseName + " Database Stored Procedures</h1>");
+            s.WriteLine("           <h1 class='dtH1'>" + databaseName + " Database Functions</h1>");
             s.WriteLine("        </div>");
             s.WriteLine("     </div>");
             s.WriteLine("     <div id='nstext' valign='bottom'>");
-            s.WriteLine("        <h4 class='dtH4'>Procedures</h4>");
+            s.WriteLine("        <h4 class='dtH4'>Functions</h4>");
 
             s.WriteLine("		<div class='tablediv'>");
             s.WriteLine("		<table cellspacing='0' class='dtTABLE'>");
@@ -62,12 +61,12 @@ namespace Database.Documentor.htmPages
 
             foreach (DataRow row in Dt.Rows)
             {
-                string RoutineName = System.Convert.ToString(row["PROCEDURE_NAME"]);
+                string RoutineName = System.Convert.ToString(row["function_name"]);
                 string Description = "";
                 if (!(row["DESCRIPTION"] == DBNull.Value))
                     Description = System.Convert.ToString(row["DESCRIPTION"]);
                 s.WriteLine("			<tr valign='top'>");
-                s.WriteLine("				<td nowrap><img class='midvalign' src='Procedure.gif'>&nbsp;<a href='" + GetFileName(RoutineName, "Procedure") + "'>" + RoutineName + "</a></td>");
+                s.WriteLine("				<td nowrap><img class='midvalign' src='Procedure.gif'>&nbsp;<a href='" + GetFileName(RoutineName, "Functions") + "'>" + RoutineName + "</a></td>");
                 s.WriteLine("				<td>" + Description + "</td>");
                 s.WriteLine("			</tr>");
             }
@@ -75,7 +74,7 @@ namespace Database.Documentor.htmPages
             s.WriteLine("		</table>");
             s.WriteLine("		</div>");
 
-            // Tables, Views, Procedures Links
+            // Tables, Views, Functions Links
             s.WriteLine("		<h4 class='dtH4'>See Also</h4>");
             s.WriteLine("		<p>");
             if (TableCount > 0)
@@ -88,12 +87,12 @@ namespace Database.Documentor.htmPages
                 s.WriteLine(" | ");
                 s.WriteLine("<a href='" + GetViewsFileName() + "'>Views</a>");
             }
-            if (FunctionCount > 0)
+
+            if (ProcedureCount > 0)
             {
                 s.WriteLine(" | ");
-                s.WriteLine("<a href='" + GetFunctionsFileName() + "'>Functions</a>");
+                s.WriteLine("<a href='" + GetProceduresFileName() + "'>Procedures</a>");
             }
-
             s.WriteLine("</p>");
             // End Links
 
@@ -109,12 +108,12 @@ namespace Database.Documentor.htmPages
         }
 
         /// <summary>Sets class properties then produces the output HTML.</summary>
-        /// <param name="dt_input">Datatable containg details of Procedures for the database.</param>
+        /// <param name="dt_input">Datatable containg details of Functions for the database.</param>
         public void WriteHTML(DataTable dt_input,
                                 DbDocSettings mySettings,
                                 int tableCount,
                                 int viewCount,
-                                 int procedureCount,
+                                int procedureCount,
                                 int functionCount)
         {
             this.Dt = dt_input;
@@ -123,7 +122,6 @@ namespace Database.Documentor.htmPages
             this.ViewCount = viewCount;
             this.ProcedureCount = procedureCount;
             this.FunctionCount = functionCount;
-
             this.WriteHTML();
         }
     }
